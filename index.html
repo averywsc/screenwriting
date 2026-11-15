@@ -286,72 +286,29 @@
   #empty-new-btn:hover{border-color:var(--accent); color:var(--shell-text);}
 
   #page{
-    width:720px;
+    width:8.5in;
     max-width:100%;
     background:var(--paper);
     color:var(--ink);
-    box-shadow:0 20px 45px rgba(0,0,0,.35);
+    border:1px solid var(--paper-edge);
     border-radius:2px;
-    padding:60px 68px 90px 96px;
+    padding:1in 1in 1in 1.5in;
     position:relative;
     font-family:"Courier New",Courier,monospace;
-    font-size:14.5px;
-    line-height:1.65;
-    min-height:900px;
+    font-size:12pt;
+    line-height:12pt;
+    min-height:11in;
   }
-  #page::before, #page::after{
-    content:"";
-    position:absolute;
-    left:34px;
-    width:13px;
-    height:13px;
-    border-radius:50%;
-    background:radial-gradient(circle at 35% 35%, var(--paper-edge), #B7AF97 70%);
-    box-shadow:inset 0 1px 2px rgba(0,0,0,.3);
-  }
-  #page::before{top:56px;}
-  #page::after{top:130px;}
-
-  .block{
-    outline:none;
-    white-space:pre-wrap;
-    word-wrap:break-word;
-    min-height:1.65em;
-    margin:0;
-  }
-  .block:empty:before{
-    content:attr(data-placeholder);
-    color:#B0AA98;
-  }
-  .block:focus{
-    background:rgba(111,160,199,0.12);
-  }
-  .type-scene_heading{
-    text-transform:uppercase;
-    font-weight:700;
-    margin-top:1.2em;
-  }
-  .type-action{margin-top:0.4em;}
-  .type-character{
-    text-transform:uppercase;
-    margin-left:2.3in;
-    margin-top:1em;
-    max-width:2.6in;
-  }
-  .type-parenthetical{
-    margin-left:1.7in;
-    max-width:2in;
-    color:#57534A;
-  }
-  .type-dialogue{
-    margin-left:1in;
-    max-width:3.5in;
-  }
-  .type-transition{
-    text-transform:uppercase;
-    text-align:right;
-    margin-top:1em;
-  }
+  .block{outline:none;white-space:pre-wrap;word-wrap:break-word;min-height:12pt;margin:0;}
+  .block:empty:before{content:attr(data-placeholder);color:#B0AA98;}
+  .block:focus{background:rgba(111,160,199,0.12);}
+  .block.pb:before{content:"";position:absolute;left:0;right:0;margin-top:-6pt;border-top:1px dashed var(--muted-dim);opacity:.5;pointer-events:none;}
+  .type-scene_heading{text-transform:uppercase;margin-top:12pt;}
+  .type-action{margin-top:12pt;}
+  .type-character{text-transform:uppercase;margin-left:2.2in;max-width:3.3in;margin-top:12pt;}
+  .type-parenthetical{margin-left:1.6in;max-width:2in;color:#57534A;}
+  .type-dialogue{margin-left:1in;max-width:3.5in;}
+  .type-transition{text-transform:uppercase;text-align:right;margin-top:12pt;}
   .block:first-child{margin-top:0;}
 
   #sidebar::-webkit-scrollbar, #stage::-webkit-scrollbar{width:9px;}
@@ -359,11 +316,107 @@
     background:var(--panel-border); border-radius:5px;
   }
 
-  @media (max-width:720px){
-    #page{padding:40px 24px 60px 48px;}
-    .type-character{margin-left:1.2in;}
-    .type-dialogue{margin-left:0.5in; max-width:none;}
-    .type-parenthetical{margin-left:0.9in;}
+  /* ---------- Sidebar extras ---------- */
+  #sidebar{width:var(--sbw,250px);min-width:var(--sbw,250px);}
+  #resizer{width:5px;flex:none;cursor:col-resize;}
+  #resizer:hover{background:var(--accent);}
+  body.sb-closed #sidebar,body.sb-closed #resizer{display:none;}
+  #nav-tabs{display:flex;gap:2px;margin-top:16px;border-bottom:1px solid var(--panel-border);}
+  .tab{flex:1;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);padding:6px 2px;font-size:11.5px;cursor:pointer;font-family:inherit;}
+  .tab:hover{color:var(--shell-text);}
+  .tab.on{color:var(--accent-strong);border-bottom-color:var(--accent);}
+  #script-list{margin-top:10px;}
+  .nav-item{padding:8px;border-radius:4px;cursor:pointer;color:var(--muted);font-size:12.5px;}
+  .nav-item:hover{background:var(--panel-border);}
+  .nav-item.drop{box-shadow:inset 0 2px 0 var(--accent);}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:6px;}
+  .nav-item .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .nav-item .n{color:var(--accent);min-width:24px;}
+  .sub{font-size:10.5px;color:var(--muted-dim);margin-top:2px;}
+  .hint{color:var(--muted-dim);font-size:12.5px;padding:8px;line-height:1.5;}
+  .sec{color:var(--muted-dim);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;margin:14px 8px 6px;}
+  .bar{height:4px;border-radius:2px;background:var(--panel-border);margin-top:5px;}
+  .bar i{display:block;height:100%;background:var(--accent);border-radius:2px;}
+  .mini{background:transparent;border:1px solid var(--panel-border);color:var(--muted);padding:2px 7px;border-radius:4px;font-size:11px;cursor:pointer;font-family:inherit;}
+  .mini:hover{border-color:var(--accent);color:var(--accent);}
+  .rn,#snap-name{background:transparent;border:1px solid var(--panel-border);color:var(--shell-text);border-radius:4px;padding:3px 6px;font-size:12px;width:100%;font-family:inherit;}
+
+  /* ---------- Top bar extras ---------- */
+  #topbar{flex-wrap:wrap;padding:10px 20px;gap:10px 14px;}
+  #topbar #contact-input,#topbar #draft-input{color:var(--muted);}
+  #contact-input{width:150px;}
+  #draft-input{width:110px;}
+  #topbar select,#topbar #goal-input{background:var(--bg);border:1px solid var(--panel-border);color:var(--shell-text);border-radius:4px;padding:3px 6px;font-size:12px;font-family:inherit;}
+  #topbar #goal-input{width:64px;}
+  #topbar label{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+  #stats,#streak{font-size:11.5px;color:var(--muted);}
+  .icon-btn{background:transparent;border:1px solid var(--panel-border);color:var(--muted);padding:6px 10px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:13px;}
+  .icon-btn:hover{border-color:var(--accent);color:var(--shell-text);}
+  #ring .trk{fill:none;stroke:var(--panel-border);stroke-width:3;}
+  #ring-bar{fill:none;stroke:var(--accent);stroke-width:3;stroke-dasharray:56.5;stroke-dashoffset:56.5;transform:rotate(-90deg);transform-origin:12px 12px;transition:stroke-dashoffset .2s;}
+  #menu-wrap{position:relative;}
+  #menu{position:absolute;right:0;top:110%;background:var(--panel);border:1px solid var(--panel-border);border-radius:4px;padding:4px;min-width:230px;z-index:30;display:flex;flex-direction:column;}
+  #menu[hidden]{display:none;}
+  #menu button{background:transparent;border:none;color:var(--shell-text);text-align:left;padding:7px 10px;border-radius:4px;font-size:12.5px;cursor:pointer;font-family:inherit;}
+  #menu button:hover{background:var(--panel-border);}
+  #menu hr{border:none;border-top:1px solid var(--panel-border);margin:4px 0;}
+
+  /* ---------- Toast ---------- */
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(8px);background:var(--panel);border:1px solid var(--accent);color:var(--shell-text);padding:9px 14px;border-radius:4px;font-size:13px;display:flex;gap:12px;align-items:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50;max-width:90vw;}
+  #toast.show{opacity:1;transform:translateX(-50%);pointer-events:auto;}
+  #toast-undo{background:none;border:none;color:var(--accent-strong);font-weight:600;cursor:pointer;font-family:inherit;}
+  .sr{position:absolute;left:-9999px;}
+
+  /* ---------- Modes and focus ---------- */
+  .focus-mode .block{opacity:.3;transition:opacity .2s;}
+  .focus-mode .block:focus{opacity:1;}
+  .zen #sidebar,.zen #resizer,.zen #topbar,.zen #toolbar-wrap{display:none;}
+  button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  #empty-state p{font-size:13px;line-height:1.5;}
+
+  /* ---------- Suggestions, find, palette, cards ---------- */
+  #ac{position:fixed;z-index:40;background:var(--panel);border:1px solid var(--panel-border);border-radius:4px;padding:3px;min-width:170px;font-family:"Courier New",monospace;font-size:12px;}
+  #ac[hidden],#find[hidden],.overlay[hidden]{display:none;}
+  .ac-item{padding:4px 8px;border-radius:3px;cursor:pointer;color:var(--shell-text);}
+  .ac-item.on,.pal-item.on{background:var(--accent);color:var(--accent-ink);}
+  #find{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 20px;background:var(--panel);border-bottom:1px solid var(--panel-border);}
+  #find input{background:var(--bg);border:1px solid var(--panel-border);color:var(--shell-text);border-radius:4px;padding:4px 8px;font-size:12.5px;font-family:inherit;width:170px;}
+  .overlay{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.45);z-index:60;display:flex;justify-content:center;align-items:flex-start;padding-top:12vh;}
+  .overlay .box{background:var(--panel);border:1px solid var(--panel-border);border-radius:4px;width:min(520px,92vw);max-height:70vh;overflow:auto;padding:10px;font-size:13px;color:var(--shell-text);}
+  #pal-in{width:100%;background:var(--bg);border:1px solid var(--panel-border);color:var(--shell-text);border-radius:4px;padding:8px 10px;font-size:14px;font-family:inherit;margin-bottom:6px;}
+  .pal-item{padding:7px 10px;border-radius:4px;cursor:pointer;}
+  #help table{width:100%;border-collapse:collapse;}
+  #help td{padding:4px 6px;border-bottom:1px solid var(--panel-border);}
+  #help td:first-child{color:var(--accent-strong);white-space:nowrap;}
+  #cards{display:none;flex-wrap:wrap;gap:12px;align-content:flex-start;max-width:1000px;margin:0 auto;width:100%;}
+  .card{width:220px;background:var(--panel);border:1px solid var(--panel-border);border-radius:4px;padding:10px;display:flex;flex-direction:column;gap:6px;color:var(--shell-text);font-size:12.5px;cursor:grab;}
+  .card.drop{box-shadow:inset 0 2px 0 var(--accent);}
+  .card .ct{font-family:"Courier New",monospace;font-size:12px;font-weight:700;}
+  .card textarea{background:transparent;border:1px solid var(--panel-border);color:var(--shell-text);border-radius:4px;padding:6px;font:inherit;min-height:70px;resize:vertical;}
+
+  /* ---------- Small screens ---------- */
+  @media (max-width:800px){
+    #sidebar{position:fixed;z-index:20;top:0;bottom:0;left:0;}
+    #resizer{display:none;}
+    #topbar{order:1;padding:8px 12px;}
+    #stage{order:2;padding:16px 6px 60px;}
+    #toolbar-wrap{order:3;padding:6px 4px;border-top:1px solid var(--panel-border);}
+    #toolbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;}
+    .type-btn kbd{display:none;}
+    #page{padding:36px 14px 48px 30px;min-height:0;}
+    .type-character{margin-left:1.3in;max-width:none;}
+    .type-parenthetical{margin-left:.9in;max-width:none;}
+    .type-dialogue{margin-left:.5in;max-width:none;}
+  }
+
+  /* ---------- Motion and print ---------- */
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important;}}
+  @media print{
+    body{display:block;height:auto;overflow:visible;background:#fff;}
+    #sidebar,#resizer,#topbar,#toolbar-wrap,#toast,.block.pb:before{display:none !important;}
+    #stage{overflow:visible;padding:0;display:block;}
+    #page{border:0;width:auto;zoom:1 !important;padding:0;}
+    .block{background:none !important;opacity:1 !important;}
   }
 </style>
 </head>
@@ -372,54 +425,131 @@
   <div id="sidebar">
     <div id="brand-row">
       <p id="brand">Screen Writing</p>
-      <button id="theme-toggle">Light</button>
+      <button id="theme-toggle" title="Theme: follow system, light or dark">Auto</button>
     </div>
     <button id="new-script-btn">+ New script</button>
-    <div id="script-list"></div>
+    <div id="nav-tabs" role="tablist" aria-label="Navigator"></div>
+    <div id="script-list" role="tabpanel"></div>
   </div>
+  <div id="resizer" role="separator" aria-orientation="vertical" aria-label="Resize sidebar"></div>
 
   <div id="main">
     <div id="topbar" style="display:none;">
-      <input id="title-input" placeholder="Untitled Script" spellcheck="false">
-      <input id="author-input" placeholder="Author name" spellcheck="false">
-      <span id="save-indicator"></span>
+      <button id="sidebar-toggle" class="icon-btn" title="Show or hide the sidebar" aria-label="Show or hide the sidebar">&#9776;</button>
+      <input id="title-input" placeholder="Untitled Script" aria-label="Title" spellcheck="false">
+      <input id="author-input" placeholder="Author name" aria-label="Author" spellcheck="false">
+      <input id="contact-input" placeholder="Contact (| = new line)" aria-label="Contact details for the title page" spellcheck="false">
+      <input id="draft-input" placeholder="Draft date" aria-label="Draft date" spellcheck="false">
+      <select id="paper-select" aria-label="Paper size"><option value="letter">US Letter</option><option value="a4">A4</option></select>
+      <label><input type="checkbox" id="scenenum-check"> Scene numbers</label>
+      <span id="stats" title="Pages, scenes, words and estimated runtime (one page is about one minute)"></span>
+      <svg id="ring" viewBox="0 0 24 24" width="22" height="22" role="img" aria-label="Session word goal progress"><circle class="trk" cx="12" cy="12" r="9"></circle><circle id="ring-bar" cx="12" cy="12" r="9"></circle></svg>
+      <input id="goal-input" type="number" min="50" step="50" aria-label="Session word goal" title="Session word goal">
+      <span id="streak" title="Days in a row you wrote something"></span>
+      <span id="save-indicator" role="status" aria-live="polite"></span>
       <button id="export-btn">Export PDF</button>
+      <div id="menu-wrap">
+        <button id="menu-btn" class="icon-btn" aria-haspopup="true" aria-label="More actions">More &#9662;</button>
+        <div id="menu" hidden>
+          <button data-act="fountain">Export Fountain</button>
+          <button data-act="txt">Export plain text</button>
+          <button data-act="html">Export HTML</button>
+          <button data-act="copy">Copy script to clipboard</button>
+          <hr>
+          <button data-act="backup">Back up all scripts (JSON)</button>
+          <button data-act="import">Import Fountain, text or backup&hellip;</button>
+          <hr>
+          <button data-act="snap">Save a version now</button>
+          <button data-act="undo">Undo</button>
+          <button data-act="redo">Redo</button>
+          <hr>
+          <button data-act="find">Find and replace (Ctrl+F)</button>
+          <button data-act="pal">Command palette (Ctrl+K)</button>
+          <button data-act="cards">Index cards or script</button>
+          <button data-act="notes">Print notes on or off</button>
+          <button data-act="help">Keyboard shortcuts</button>
+          <hr>
+          <button data-act="focus">Focus mode on or off</button>
+          <button data-act="tw">Typewriter scrolling on or off</button>
+          <button data-act="full">Distraction free full screen</button>
+          <button data-act="zin">Zoom in</button>
+          <button data-act="zout">Zoom out</button>
+        </div>
+      </div>
     </div>
     <div id="toolbar-wrap" style="display:none;">
-      <div id="toolbar"></div>
+      <div id="toolbar" role="toolbar" aria-label="Element type"></div>
+    </div>
+    <div id="find" hidden>
+      <input id="find-in" placeholder="Find" aria-label="Find">
+      <input id="rep-in" placeholder="Replace with" aria-label="Replace with">
+      <button class="mini" data-f="next">Next</button>
+      <button class="mini" data-f="rep">Replace</button>
+      <button class="mini" data-f="all">Replace all</button>
+      <span id="find-count" class="sub"></span>
+      <button class="mini" data-f="close" aria-label="Close find">&#10005;</button>
     </div>
     <div id="stage">
       <div id="empty-state">
         <h2>No page open</h2>
+        <p>Start a new script, pick one from the sidebar, or import a Fountain file from the More menu once a script is open.</p>
         <button id="continue-btn" style="display:none;">Continue</button>
         <button id="empty-new-btn">+ New script</button>
       </div>
-      <div id="page" style="display:none;"></div>
+      <div id="page" role="document" aria-label="Script" style="display:none;"></div>
+      <div id="cards" aria-label="Index cards"></div>
     </div>
   </div>
+
+  <div id="ac" role="listbox" aria-label="Suggestions" hidden></div>
+  <div id="pal" class="overlay" hidden><div class="box"><input id="pal-in" placeholder="Type a command" aria-label="Command"><div id="pal-list" role="listbox"></div></div></div>
+  <div id="help" class="overlay" hidden><div class="box"><h3 style="margin:0 0 8px;">Keyboard shortcuts</h3><table>
+    <tr><td>Enter</td><td>New line. Moves on to the next element (Location to Action, Speaker to Dialogue). On an empty line it turns into Action.</td></tr>
+    <tr><td>Tab</td><td>On an empty line: Action becomes Speaker, Dialogue becomes Note. Otherwise cycles the element. Shift+Tab goes back.</td></tr>
+    <tr><td>Ctrl+1 to 6</td><td>Location, Action, Speaker, Note, Dialogue, Scene change</td></tr>
+    <tr><td>INT. or EXT.</td><td>Typed in an Action line, it becomes a Location. Pick from the list, then a place, then the time of day.</td></tr>
+    <tr><td>Up, Down, Tab</td><td>Choose and accept a suggestion (names, places, times, V.O., O.S.)</td></tr>
+    <tr><td>Ctrl+B, I, U</td><td>Bold, italic, underline</td></tr>
+    <tr><td>[[ note ]]</td><td>A note to yourself. It never prints unless you switch Print notes on.</td></tr>
+    <tr><td>Ctrl+Z, Ctrl+Shift+Z</td><td>Undo, redo</td></tr>
+    <tr><td>Ctrl+F, F3</td><td>Find and replace, find next</td></tr>
+    <tr><td>Ctrl+K</td><td>Command palette</td></tr>
+    <tr><td>Ctrl+S</td><td>Save now</td></tr>
+    <tr><td>Ctrl+/ or F1</td><td>This list</td></tr>
+    <tr><td>Esc</td><td>Close a list, panel or the index cards</td></tr>
+  </table></div></div>
+  <div id="toast"><span id="toast-text"></span><button id="toast-undo">Undo</button></div>
+  <div id="live" class="sr" aria-live="polite"></div>
+  <input id="file-input" type="file" accept=".fountain,.txt,.json,text/plain,application/json" hidden>
 
 <script>
 (function(){
 
   var TYPES = [
-    {key:'scene_heading', label:'Location',     shortcut:'1', placeholder:'Where does this happen?'},
-    {key:'action',        label:'Action',       shortcut:'2', placeholder:'What happens here?'},
-    {key:'character',     label:'Speaker',      shortcut:'3', placeholder:'Who is talking?'},
-    {key:'parenthetical', label:'Note',         shortcut:'4', placeholder:'How they say it'},
-    {key:'dialogue',      label:'Dialogue',     shortcut:'5', placeholder:'What they say'},
-    {key:'transition',    label:'Scene change', shortcut:'6', placeholder:'How you move to the next scene'}
+    {key:'scene_heading', label:'Location',     tip:'Scene Heading', shortcut:'1', placeholder:'Where does this happen?'},
+    {key:'action',        label:'Action',       tip:'Action',        shortcut:'2', placeholder:'What happens here?'},
+    {key:'character',     label:'Speaker',      tip:'Character',     shortcut:'3', placeholder:'Who is talking?'},
+    {key:'parenthetical', label:'Note',         tip:'Parenthetical', shortcut:'4', placeholder:'How they say it'},
+    {key:'dialogue',      label:'Dialogue',     tip:'Dialogue',      shortcut:'5', placeholder:'What they say'},
+    {key:'transition',    label:'Scene change', tip:'Transition',    shortcut:'6', placeholder:'How you move to the next scene'}
   ];
   var TYPE_MAP = {};
   TYPES.forEach(function(t){ TYPE_MAP[t.key] = t; });
 
-  var NEXT_TYPE = {
-    scene_heading: 'action',
-    action: 'action',
-    character: 'dialogue',
-    parenthetical: 'dialogue',
-    dialogue: 'character',
-    transition: 'scene_heading'
+  var NEXT_TYPE = {scene_heading:'action', action:'action', character:'dialogue', parenthetical:'dialogue', dialogue:'character', transition:'scene_heading'};
+  // Tab on an empty line, like pro tools
+  var TAB_EMPTY = {scene_heading:'action', action:'character', character:'transition', parenthetical:'dialogue', dialogue:'parenthetical', transition:'scene_heading'};
+  // indent in inches, width in characters (Courier 12 is 10 per inch)
+  var STY = {
+    scene_heading:{ind:0,   w:60, before:1, up:1},
+    action:       {ind:0,   w:60, before:1},
+    character:    {ind:2.2, w:33, before:1, up:1},
+    parenthetical:{ind:1.6, w:20, before:0},
+    dialogue:     {ind:1,   w:35, before:0},
+    transition:   {ind:0,   w:60, before:1, up:1, right:1}
   };
+  var SCENE_RE = /^(INT|EXT|EST|INT\.?\/EXT|EXT\.?\/INT|I\/E)[. ]/i;
+  var TABS = [['scripts','Scripts'],['scenes','Scenes'],['chars','Characters'],['locs','Locations']];
 
   var pageEl = document.getElementById('page');
   var stageEl = document.getElementById('stage');
@@ -429,91 +559,177 @@
   var toolbarEl = document.getElementById('toolbar');
   var titleInput = document.getElementById('title-input');
   var authorInput = document.getElementById('author-input');
+  var contactInput = document.getElementById('contact-input');
+  var draftInput = document.getElementById('draft-input');
+  var paperSel = document.getElementById('paper-select');
+  var numChk = document.getElementById('scenenum-check');
+  var statsEl = document.getElementById('stats');
+  var ringBar = document.getElementById('ring-bar');
+  var ringEl = document.getElementById('ring');
+  var goalInput = document.getElementById('goal-input');
+  var streakEl = document.getElementById('streak');
   var saveIndicator = document.getElementById('save-indicator');
   var exportBtn = document.getElementById('export-btn');
+  var menuBtn = document.getElementById('menu-btn');
+  var menuEl = document.getElementById('menu');
+  var fileInput = document.getElementById('file-input');
+  var sidebarToggle = document.getElementById('sidebar-toggle');
+  var resizerEl = document.getElementById('resizer');
+  var navTabs = document.getElementById('nav-tabs');
   var listEl = document.getElementById('script-list');
   var newBtn = document.getElementById('new-script-btn');
   var emptyNewBtn = document.getElementById('empty-new-btn');
   var continueBtn = document.getElementById('continue-btn');
   var themeToggle = document.getElementById('theme-toggle');
+  var toastEl = document.getElementById('toast');
+  var toastText = document.getElementById('toast-text');
+  var toastUndo = document.getElementById('toast-undo');
+  var liveEl = document.getElementById('live');
+  var acEl = document.getElementById('ac');
+  var findEl = document.getElementById('find');
+  var findIn = document.getElementById('find-in');
+  var repIn = document.getElementById('rep-in');
+  var findCount = document.getElementById('find-count');
+  var palEl = document.getElementById('pal');
+  var palIn = document.getElementById('pal-in');
+  var palListEl = document.getElementById('pal-list');
+  var helpEl = document.getElementById('help');
+  var cardsEl = document.getElementById('cards');
 
-  var current = null;      // {id, title, author, blocks:[{id,type,text}], updatedAt}
+  var current = null;      // {v, id, title, author, contact, draft, paper, sceneNums, blocks:[{id,type,text}], updatedAt}
   var focusedId = null;
   var saveTimer = null;
+  var histTimer = null;
+  var toastTimer = null;
+  var toastFn = null;
   var idCounter = 0;
+  var composing = false;
+  var dirtySnap = false;
+  var baseWords = 0;
+  var dragK = -1;
+  var boardOn = false;
+  var fpos = {bi:0, o:0};
+  var palList = [];
+  var palSel = 0;
+  var ac = {el:null, opts:[], i:0, start:0, suffix:'', nav:false};
+  var hist = {stack:[], pos:-1};
+  var layout = {pages:[[]], pb:{}, pageOf:{}};
+  var info = {scenes:[], chars:{}, locs:{}, words:0, dlg:0};
+  var index = {};          // id -> {title, updatedAt}
+  var trashIdx = {};       // id -> {title, deletedAt}
+  var snapIdx = [];        // [{ts, name}] for the open script
+  var streak = {last:'', n:0};
+  var ui = {theme:'auto', focus:false, tw:false, zoom:1, goal:500, tab:'scripts', sb:250};
 
   function genId(){
     idCounter++;
     return 'b' + Date.now().toString(36) + idCounter;
   }
 
-  /* ---------------- Storage (plain browser localStorage) ---------------- */
+  function esc(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ---------------- Storage ---------------- */
 
   var NS = 'screenwriting:';
   var storage = {
-    get: function(key){
-      return new Promise(function(resolve, reject){
-        var raw;
-        try { raw = localStorage.getItem(NS + key); } catch(e){ raw = null; }
-        if(raw === null){ reject(new Error('not found')); return; }
-        resolve({key: key, value: raw});
-      });
-    },
-    set: function(key, value){
-      return new Promise(function(resolve, reject){
-        try {
-          localStorage.setItem(NS + key, value);
-          resolve({key: key, value: value});
-        } catch(e){ reject(e); }
-      });
-    },
-    delete: function(key){
-      return new Promise(function(resolve){
-        try { localStorage.removeItem(NS + key); } catch(e){}
-        resolve({key: key, deleted: true});
-      });
-    },
-    list: function(prefix){
-      return new Promise(function(resolve){
-        var keys = [];
-        try {
-          for(var i=0;i<localStorage.length;i++){
-            var k = localStorage.key(i);
-            if(k.indexOf(NS) === 0){
-              var stripped = k.slice(NS.length);
-              if(!prefix || stripped.indexOf(prefix) === 0) keys.push(stripped);
-            }
-          }
-        } catch(e){}
-        resolve({keys: keys});
-      });
+    get: function(k){ try { return localStorage.getItem(NS + k); } catch(e){ return null; } },
+    set: function(k, v){ try { localStorage.setItem(NS + k, v); return true; } catch(e){ return false; } },
+    remove: function(k){ try { localStorage.removeItem(NS + k); } catch(e){} },
+    keys: function(p){
+      var out = [];
+      try {
+        for(var i=0;i<localStorage.length;i++){
+          var k = localStorage.key(i);
+          if(k.indexOf(NS + p) === 0) out.push(k.slice(NS.length));
+        }
+      } catch(e){}
+      return out;
     }
   };
+  function getJSON(k){
+    var r = storage.get(k);
+    if(r === null) return null;
+    try { return JSON.parse(r); } catch(e){ return null; }
+  }
+  function putJSON(k, o){ return storage.set(k, JSON.stringify(o)); }
 
-  /* ---------------- Theme ---------------- */
-
-  function applyTheme(theme){
-    if(theme === 'light'){
-      document.body.setAttribute('data-theme','light');
-      themeToggle.textContent = 'Dark';
-    } else {
-      document.body.removeAttribute('data-theme');
-      themeToggle.textContent = 'Light';
+  // Old scripts have no version. Bring them up to version 2 without losing anything.
+  function migrate(s){
+    if(!s || !s.blocks || !s.id) return null;
+    if(!s.v) s.v = 1;
+    if(s.v < 2){
+      s.contact = s.contact || '';
+      s.draft = s.draft || '';
+      s.paper = 'letter';
+      s.sceneNums = false;
+      s.v = 2;
     }
+    s.title = s.title || 'Untitled Script';
+    s.updatedAt = s.updatedAt || Date.now();
+    s.blocks = s.blocks.map(function(b){
+      var o = {id: b.id || genId(), type: TYPE_MAP[b.type] ? b.type : 'action', text: b.text || ''};
+      if(b.syn) o.syn = b.syn;
+      return o;
+    });
+    return s;
   }
 
-  function toggleTheme(){
-    var isLight = document.body.getAttribute('data-theme') === 'light';
-    var next = isLight ? 'dark' : 'light';
-    applyTheme(next);
-    storage.set('ui:theme', next, false).catch(function(){});
+  function loadIndex(){
+    index = {}; trashIdx = {};
+    storage.keys('script:').forEach(function(k){
+      var s = migrate(getJSON(k));
+      if(s) index[s.id] = {title:s.title, updatedAt:s.updatedAt};
+    });
+    storage.keys('trash:').forEach(function(k){
+      var t = getJSON(k);
+      if(t && t.script) trashIdx[t.script.id] = {title:t.script.title, deletedAt:t.deletedAt};
+    });
   }
 
-  themeToggle.addEventListener('click', toggleTheme);
+  /* ---------------- Theme and view ---------------- */
 
-  storage.get('ui:theme').then(function(res){
-    if(res && res.value) applyTheme(res.value);
-  }).catch(function(){});
+  function applyTheme(){
+    var t = ui.theme;
+    var light = t === 'light' || (t === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches);
+    if(light) document.body.setAttribute('data-theme','light'); else document.body.removeAttribute('data-theme');
+    themeToggle.textContent = t === 'auto' ? 'Auto' : (t === 'light' ? 'Light' : 'Dark');
+  }
+
+  function cycleTheme(){
+    ui.theme = ui.theme === 'auto' ? 'light' : (ui.theme === 'light' ? 'dark' : 'auto');
+    applyTheme();
+    storage.set('ui:theme', ui.theme);
+  }
+
+  function saveUI(){ putJSON('ui:settings', {focus:ui.focus, tw:ui.tw, zoom:ui.zoom, goal:ui.goal, tab:ui.tab, sb:ui.sb}); }
+
+  function applyView(){
+    document.body.classList.toggle('focus-mode', ui.focus);
+    pageEl.style.zoom = ui.zoom;
+    document.body.style.setProperty('--sbw', ui.sb + 'px');
+    goalInput.value = ui.goal;
+    saveUI();
+  }
+
+  function toggleFull(){
+    var z = document.body.classList.toggle('zen');
+    try {
+      if(z && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+      else if(!z && document.fullscreenElement) document.exitFullscreen();
+    } catch(e){}
+  }
+
+  function toast(msg, undoFn){
+    toastText.textContent = msg;
+    toastUndo.style.display = undoFn ? 'inline-block' : 'none';
+    toastFn = undoFn || null;
+    toastEl.classList.add('show');
+    liveEl.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, undoFn ? 7000 : 5000);
+  }
 
   /* ---------------- Toolbar ---------------- */
 
@@ -523,6 +739,7 @@
       var btn = document.createElement('button');
       btn.className = 'type-btn';
       btn.dataset.type = t.key;
+      btn.title = t.tip;
       btn.innerHTML = t.label + '<kbd>Ctrl+' + t.shortcut + '</kbd>';
       btn.addEventListener('click', function(){
         if(focusedId) setBlockType(focusedId, t.key, true);
@@ -530,46 +747,231 @@
       toolbarEl.appendChild(btn);
     });
   }
-  buildToolbar();
 
   function highlightToolbar(type){
     var btns = toolbarEl.querySelectorAll('.type-btn');
     for(var i=0;i<btns.length;i++){
-      btns[i].classList.toggle('active', btns[i].dataset.type === type);
+      var on = btns[i].dataset.type === type;
+      btns[i].classList.toggle('active', on);
+      btns[i].setAttribute('aria-pressed', on);
     }
   }
 
-  /* ---------------- Rendering ---------------- */
+  /* ---------------- Pages (shared by editor, stats and exports) ---------------- */
+
+  function paperInfo(){ return current && current.paper === 'a4' ? {w:8.27, h:11.69} : {w:8.5, h:11}; }
+
+  // Same bold, italic and underline marks as Fountain: **bold** *italic* _underline_
+  function parseInline(t){
+    var plain = '', st = [], b = 0, i = 0, u = 0, k = 0;
+    if(!(current && current.printNotes)) t = t.replace(/\s*\[\[[\s\S]*?\]\]/g, '');
+    while(k < t.length){
+      if(t.substr(k,2) === '**'){ b ^= 1; k += 2; }
+      else if(t.charAt(k) === '*'){ i ^= 1; k++; }
+      else if(t.charAt(k) === '_'){ u ^= 1; k++; }
+      else { plain += t.charAt(k); st.push(b | (i << 1) | (u << 2)); k++; }
+    }
+    return {plain:plain, st:st};
+  }
+
+  function nameOf(t){
+    return parseInline(t).plain.toUpperCase().replace(/\s*\(.*?\)/g,'').replace(/\^/g,'').trim();
+  }
+
+  function wrapRanges(p, n){
+    var r = [], s = 0;
+    if(!p.length) return [[0,0]];
+    while(s < p.length){
+      var e = s + n;
+      if(e >= p.length){ r.push([s, p.length]); break; }
+      var sp = p.lastIndexOf(' ', e);
+      if(sp > s){ r.push([s, sp]); s = sp + 1; } else { r.push([s, e]); s = e; }
+    }
+    return r;
+  }
+
+  function mkLines(b, bi, o){
+    var S = STY[b.type], pi = parseInline(b.text || ''), plain = pi.plain, st = pi.st, base = '';
+    if(!plain.trim()) return [];
+    if(S.up) plain = plain.toUpperCase();
+    if(b.type === 'parenthetical'){
+      if(plain.charAt(0) !== '('){ plain = '(' + plain; st.unshift(0); }
+      if(plain.slice(-1) !== ')'){ plain += ')'; st.push(0); }
+    }
+    if(b.type === 'character'){
+      base = plain;
+      if(o && o.contd){ plain += " (CONT'D)"; for(var q=0;q<9;q++) st.push(0); }
+    }
+    return wrapRanges(plain, S.w).map(function(r, k){
+      return {bi:bi, k:b.type, plain:plain.slice(r[0],r[1]), st:st.slice(r[0],r[1]), x:S.ind, right:S.right, b0:k === 0 ? S.before : 0, base:base, sn:(k === 0 && o && o.sn) || 0};
+    });
+  }
+
+  function paginate(){
+    var cap = Math.floor((paperInfo().h - 2) * 6) + 1;
+    var pages = [[]], used = 0, pb = {}, pageOf = {}, sn = 0, lastSp = '', acted = false, bl = current.blocks;
+
+    function brk(){ pages.push([]); used = 0; }
+    function put(L){
+      var b = used ? L.b0 : 0;
+      if(!used && pages.length > 1) pb[L.bi] = true;
+      if(pageOf[L.bi] == null) pageOf[L.bi] = pages.length;
+      L.b = b;
+      pages[pages.length-1].push(L);
+      used += b + 1;
+    }
+    // Scene headings keep room for the line that follows
+    function simple(lines, head){
+      lines.forEach(function(L, k){
+        var b = used ? L.b0 : 0;
+        var need = b + 1 + (head && k === 0 ? 2 : 0);
+        if(used && used + need > cap) brk();
+        put(L);
+      });
+    }
+    // Cue plus dialogue: split with (MORE) and a (CONT'D) cue on the next page
+    function group(lines){
+      var n = lines.length;
+      lines.forEach(function(L, k){
+        var b = used ? L.b0 : 0, last = k === n - 1;
+        var need = k === 0 ? b + 2 + (n > 2 ? 1 : 0) : (last ? 1 : 2);
+        if(used + need > cap){
+          if(k > 0){
+            put({bi:L.bi, k:'more', plain:'(MORE)', st:[], x:2.2, b0:0});
+            brk();
+            put({bi:lines[0].bi, k:'character', plain:lines[0].base + " (CONT'D)", st:[], x:2.2, b0:0});
+          } else brk();
+        }
+        put(L);
+      });
+    }
+
+    for(var i=0;i<bl.length;i++){
+      var b = bl[i], t = b.type;
+      if(!(b.text || '').trim()) continue;
+      if(t === 'scene_heading'){
+        sn++; lastSp = ''; acted = false;
+        simple(mkLines(b, i, {sn:sn}), true);
+      } else if(t === 'character'){
+        var nm = nameOf(b.text);
+        var lines = mkLines(b, i, {contd: nm === lastSp && acted && !/CONT'D/i.test(b.text)});
+        var j = i + 1;
+        while(j < bl.length && (bl[j].type === 'parenthetical' || bl[j].type === 'dialogue')){
+          lines = lines.concat(mkLines(bl[j], j));
+          j++;
+        }
+        group(lines);
+        lastSp = nm; acted = false; i = j - 1;
+      } else {
+        if(t === 'action') acted = true;
+        if(t === 'transition'){ lastSp = ''; acted = false; }
+        simple(mkLines(b, i));
+      }
+    }
+    return {pages:pages, pb:pb, pageOf:pageOf};
+  }
+
+  function pgOf(i){
+    while(i >= 0 && layout.pageOf[i] == null) i--;
+    return i >= 0 ? layout.pageOf[i] : 1;
+  }
+
+  function analyse(){
+    var sc = [], ch = {}, lo = {}, words = 0, dlg = 0, sn = 0, cur = '';
+    current.blocks.forEach(function(b, i){
+      var t = b.text || '';
+      var w = parseInline(t).plain.trim().split(/\s+/).filter(Boolean).length;
+      words += w;
+      if(b.type === 'scene_heading'){
+        if(!t.trim()) return;
+        sn++;
+        var u = t.toUpperCase();
+        sc.push({bi:i, k:sn-1, n:sn, text:u, pg:pgOf(i), syn:b.syn || ''});
+        var loc = u.replace(/^\s*(INT\.?\/EXT|EXT\.?\/INT|INT|EXT|EST|I\/E)[. ]\s*/,'').split(/\s+-\s+/)[0].trim();
+        if(loc){ lo[loc] = lo[loc] || {n:0, bi:i}; lo[loc].n++; }
+        cur = '';
+      } else if(b.type === 'character'){
+        cur = nameOf(t);
+        if(cur && !ch[cur]) ch[cur] = {lines:0, words:0, pg:pgOf(i), bi:i};
+      } else if(b.type === 'dialogue' && cur && ch[cur]){
+        ch[cur].lines++; ch[cur].words += w; dlg += w;
+      }
+    });
+    return {scenes:sc, chars:ch, locs:lo, words:words, dlg:dlg};
+  }
+
+  function markBreaks(){
+    var els = pageEl.children;
+    for(var i=0;i<els.length && i<current.blocks.length;i++){
+      var on = !!layout.pb[i];
+      if(els[i].classList.contains('pb') !== on) els[i].classList.toggle('pb', on);
+    }
+  }
+
+  function dayKey(off){
+    var d = new Date();
+    d.setDate(d.getDate() + off);
+    return d.toLocaleDateString('en-CA');
+  }
+
+  function recordDay(){
+    var today = dayKey(0);
+    if(streak.last === today) return;
+    streak.n = streak.last === dayKey(-1) ? streak.n + 1 : 1;
+    streak.last = today;
+    putJSON('ui:streak', streak);
+    showStreak();
+  }
+
+  function showStreak(){
+    var live = streak.last === dayKey(0) || streak.last === dayKey(-1);
+    streakEl.textContent = live && streak.n > 0 ? streak.n + '-day streak' : '';
+  }
+
+  function updateStats(){
+    var pg = layout.pages.length, h = Math.floor(pg / 60), m = pg % 60;
+    statsEl.textContent = pg + (pg === 1 ? ' page' : ' pages') + ' · ' + info.scenes.length + ' scenes · ' + info.words.toLocaleString() + ' words · about ' + (h ? h + 'h ' + m + 'm' : m + ' min');
+    var ses = Math.max(0, info.words - baseWords);
+    ringBar.style.strokeDashoffset = 56.5 * (1 - Math.min(1, ses / (ui.goal || 500)));
+    ringEl.setAttribute('aria-label', ses + ' of ' + ui.goal + ' words this session');
+    ringEl.setAttribute('title', ses + ' of ' + ui.goal + ' words this session');
+    if(ses > 0) recordDay();
+  }
+
+  function refreshAll(){
+    layout = paginate();
+    info = analyse();
+    markBreaks();
+    updateStats();
+    renderNav();
+  }
+
+  /* ---------------- Editor ---------------- */
 
   function renderPage(){
     pageEl.innerHTML = '';
-    current.blocks.forEach(function(block){
-      pageEl.appendChild(makeBlockEl(block));
-    });
+    var frag = document.createDocumentFragment();
+    current.blocks.forEach(function(block){ frag.appendChild(makeBlockEl(block)); });
+    pageEl.appendChild(frag);
   }
 
   function makeBlockEl(block){
     var el = document.createElement('div');
     el.className = 'block type-' + block.type;
     el.contentEditable = 'true';
-    el.spellcheck = false;
     el.dataset.id = block.id;
-    el.dataset.type = block.type;
-    el.dataset.placeholder = TYPE_MAP[block.type].placeholder;
+    el.setAttribute('role','textbox');
+    styleBlock(el, block.type);
     el.textContent = block.text || '';
-    attachBlockEvents(el);
     return el;
   }
 
-  function attachBlockEvents(el){
-    el.addEventListener('focus', function(){
-      focusedId = el.dataset.id;
-      highlightToolbar(el.dataset.type);
-    });
-    el.addEventListener('input', function(){
-      scheduleSave();
-    });
-    el.addEventListener('keydown', onBlockKeydown);
+  function styleBlock(el, type){
+    el.className = 'block type-' + type + (el.classList.contains('pb') ? ' pb' : '');
+    el.dataset.type = type;
+    el.dataset.placeholder = TYPE_MAP[type].placeholder;
+    el.setAttribute('aria-label', TYPE_MAP[type].tip);
+    el.spellcheck = type === 'action' || type === 'dialogue' || type === 'parenthetical';
   }
 
   function focusBlock(id, atStart){
@@ -582,30 +984,20 @@
   function placeCaret(el, atStart){
     var range = document.createRange();
     var sel = window.getSelection();
-    if(!el.firstChild){
-      range.setStart(el, 0);
-    } else if(atStart){
-      range.setStart(el.firstChild, 0);
-    } else {
-      range.selectNodeContents(el);
-      range.collapse(false);
-    }
+    if(!el.firstChild) range.setStart(el, 0);
+    else if(atStart) range.setStart(el.firstChild, 0);
+    else { range.selectNodeContents(el); range.collapse(false); }
     range.collapse(true);
     sel.removeAllRanges();
     sel.addRange(range);
   }
 
-  function splitAtCaret(el){
-    var sel = window.getSelection();
-    var full = el.textContent;
-    if(!sel.rangeCount) return [full, ''];
-    var range = sel.getRangeAt(0);
-    var pre = range.cloneRange();
-    pre.selectNodeContents(el);
-    pre.setEnd(range.endContainer, range.endOffset);
-    var before = pre.toString();
-    var after = full.slice(before.length);
-    return [before, after];
+  function setCaret(el, o){
+    var tn = el.firstChild, range = document.createRange(), sel = window.getSelection();
+    if(!tn) range.setStart(el, 0); else range.setStart(tn, Math.min(o, tn.length));
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
   }
 
   function caretOffset(el){
@@ -618,90 +1010,28 @@
     return pre.toString().length;
   }
 
-  function onBlockKeydown(e){
-    var el = e.currentTarget;
-    var id = el.dataset.id;
-    var idx = blockIndex(id);
+  function splitAtCaret(el){
+    var full = el.textContent, off = caretOffset(el);
+    return [full.slice(0, off), full.slice(off)];
+  }
 
-    if(e.ctrlKey && /^[1-6]$/.test(e.key)){
-      e.preventDefault();
-      setBlockType(id, TYPES[parseInt(e.key,10)-1].key, false);
-      return;
-    }
-
-    if(e.key === 'Tab'){
-      e.preventDefault();
-      var curTypeIdx = TYPES.findIndex(function(t){return t.key === el.dataset.type;});
-      var dir = e.shiftKey ? -1 : 1;
-      var nextIdx = (curTypeIdx + dir + TYPES.length) % TYPES.length;
-      setBlockType(id, TYPES[nextIdx].key, false);
-      return;
-    }
-
-    if(e.key === 'Enter' && !e.shiftKey){
-      e.preventDefault();
-      var parts = splitAtCaret(el);
-      var before = parts[0], after = parts[1];
-      el.textContent = before;
-      var newType = NEXT_TYPE[el.dataset.type] || 'action';
-      var newBlock = {id: genId(), type: newType, text: after};
-      current.blocks.splice(idx+1, 0, newBlock);
-      pageEl.insertBefore(makeBlockEl(newBlock), el.nextSibling);
-      focusBlock(newBlock.id, true);
-      scheduleSave();
-      return;
-    }
-
-    if(e.key === 'Backspace'){
-      var offset = caretOffset(el);
-      var selCollapsed = window.getSelection().isCollapsed;
-      if(offset === 0 && selCollapsed && idx > 0){
-        e.preventDefault();
-        var prevBlock = current.blocks[idx-1];
-        var prevEl = pageEl.querySelector('[data-id="' + prevBlock.id + '"]');
-        var mergedTail = el.textContent;
-        var prevLen = prevEl.textContent.length;
-        prevEl.textContent = prevEl.textContent + mergedTail;
-        current.blocks.splice(idx, 1);
-        pageEl.removeChild(el);
-        prevEl.focus();
-        var range = document.createRange();
-        var sel = window.getSelection();
-        if(prevEl.firstChild){
-          range.setStart(prevEl.firstChild, Math.min(prevLen, prevEl.firstChild.length));
-        } else {
-          range.setStart(prevEl, 0);
-        }
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        scheduleSave();
-      }
-      return;
-    }
-
-    if(e.key === 'ArrowUp'){
-      var off = caretOffset(el);
-      if(off === 0 && idx > 0){
-        e.preventDefault();
-        focusBlock(current.blocks[idx-1].id, false);
-      }
-      return;
-    }
-    if(e.key === 'ArrowDown'){
-      var off2 = caretOffset(el);
-      if(off2 === el.textContent.length && idx < current.blocks.length - 1){
-        e.preventDefault();
-        focusBlock(current.blocks[idx+1].id, true);
-      }
-      return;
-    }
+  function wrapSel(el, m, m2){
+    var sel = window.getSelection();
+    if(!sel.rangeCount) return;
+    var r = sel.getRangeAt(0), pre = r.cloneRange();
+    pre.selectNodeContents(el);
+    pre.setEnd(r.startContainer, r.startOffset);
+    var a = pre.toString().length, e = a + r.toString().length, t = el.textContent;
+    el.textContent = t.slice(0,a) + m + t.slice(a,e) + (m2 || m) + t.slice(e);
+    var rg = document.createRange();
+    rg.setStart(el.firstChild, a + m.length);
+    rg.setEnd(el.firstChild, e + m.length);
+    sel.removeAllRanges();
+    sel.addRange(rg);
   }
 
   function blockIndex(id){
-    for(var i=0;i<current.blocks.length;i++){
-      if(current.blocks[i].id === id) return i;
-    }
+    for(var i=0;i<current.blocks.length;i++){ if(current.blocks[i].id === id) return i; }
     return -1;
   }
 
@@ -709,277 +1039,1189 @@
     var idx = blockIndex(id);
     if(idx === -1) return;
     current.blocks[idx].type = type;
-    var el = pageEl.querySelector('[data-id="' + id + '"]');
-    if(el){
-      el.className = 'block type-' + type;
-      el.dataset.type = type;
-      el.dataset.placeholder = TYPE_MAP[type].placeholder;
-      if(refocus) el.focus();
-    }
+    var el = pageEl.children[idx];
+    if(el){ styleBlock(el, type); if(refocus) el.focus(); }
     highlightToolbar(type);
+    pushHist();
+    scheduleSave();
+    if(el) updateAc(el);
+  }
+
+  function typewriter(el){
+    if(!ui.tw || !el) return;
+    var r = el.getBoundingClientRect(), s = stageEl.getBoundingClientRect();
+    stageEl.scrollTop += r.top - (s.top + s.height / 2);
+  }
+
+  function syncBlocksFromDOM(){
+    var els = pageEl.children;
+    if(els.length !== current.blocks.length) return;
+    for(var i=0;i<els.length;i++) current.blocks[i].text = els[i].textContent;
+  }
+
+  function onKeydown(e){
+    var el = e.target.closest ? e.target.closest('.block') : null;
+    if(!el || e.isComposing || composing) return;
+    if(acKey(e)) return;
+    var id = el.dataset.id, idx = blockIndex(id), k = e.key, mod = e.ctrlKey || e.metaKey;
+
+    if(e.ctrlKey && /^[1-6]$/.test(k)){
+      e.preventDefault();
+      setBlockType(id, TYPES[parseInt(k,10)-1].key, false);
+      return;
+    }
+    if(mod && !e.altKey){
+      var lk = k.toLowerCase();
+      if(lk === 'z'){ e.preventDefault(); if(e.shiftKey) redo(); else undo(); return; }
+      if(lk === 'y'){ e.preventDefault(); redo(); return; }
+      if(lk === 's'){ e.preventDefault(); performSave(); return; }
+      if(lk === 'b' || lk === 'i' || lk === 'u'){
+        e.preventDefault();
+        wrapSel(el, lk === 'b' ? '**' : (lk === 'i' ? '*' : '_'));
+        scheduleSave(); pushHist();
+        return;
+      }
+    }
+
+    if(k === 'Tab'){
+      e.preventDefault();
+      var type = el.dataset.type;
+      if(!el.textContent && !e.shiftKey){ setBlockType(id, TAB_EMPTY[type], false); return; }
+      var ci = TYPES.findIndex(function(t){ return t.key === type; });
+      setBlockType(id, TYPES[(ci + (e.shiftKey ? -1 : 1) + TYPES.length) % TYPES.length].key, false);
+      return;
+    }
+
+    if(k === 'Enter' && !e.shiftKey){
+      e.preventDefault();
+      if(!el.textContent && el.dataset.type !== 'action'){ setBlockType(id, 'action', false); return; }
+      var parts = splitAtCaret(el);
+      el.textContent = parts[0];
+      var nb = {id:genId(), type:NEXT_TYPE[el.dataset.type] || 'action', text:parts[1]};
+      current.blocks.splice(idx+1, 0, nb);
+      pageEl.insertBefore(makeBlockEl(nb), el.nextSibling);
+      focusBlock(nb.id, true);
+      typewriter(el.nextSibling);
+      pushHist();
+      scheduleSave();
+      return;
+    }
+
+    if(k === 'Backspace' && window.getSelection().isCollapsed && caretOffset(el) === 0 && idx > 0){
+      e.preventDefault();
+      var prevEl = pageEl.children[idx-1];
+      var prevLen = prevEl.textContent.length;
+      prevEl.textContent = prevEl.textContent + el.textContent;
+      current.blocks.splice(idx, 1);
+      pageEl.removeChild(el);
+      prevEl.focus();
+      setCaret(prevEl, prevLen);
+      pushHist();
+      scheduleSave();
+      return;
+    }
+
+    if(k === 'ArrowUp' && caretOffset(el) === 0 && idx > 0){
+      e.preventDefault();
+      focusBlock(current.blocks[idx-1].id, false);
+    } else if(k === 'ArrowDown' && caretOffset(el) === el.textContent.length && idx < current.blocks.length - 1){
+      e.preventDefault();
+      focusBlock(current.blocks[idx+1].id, true);
+    }
+  }
+
+  // Paste as plain text. Several lines become proper blocks.
+  function onPaste(e){
+    var el = e.target.closest ? e.target.closest('.block') : null;
+    if(!el) return;
+    e.preventDefault();
+    var t = (e.clipboardData || window.clipboardData).getData('text/plain');
+    if(!t) return;
+    if(t.indexOf('\n') < 0){
+      document.execCommand('insertText', false, t);
+      scheduleSave();
+      return;
+    }
+    var arr = parseText(t).blocks;
+    if(!arr.length) return;
+    syncBlocksFromDOM();
+    var idx = blockIndex(el.dataset.id), empty = !current.blocks[idx].text;
+    Array.prototype.splice.apply(current.blocks, [empty ? idx : idx + 1, empty ? 1 : 0].concat(arr));
+    renderPage();
+    focusBlock(arr[arr.length-1].id, false);
+    pushHist();
     scheduleSave();
   }
 
-  /* ---------------- Model <-> DOM ---------------- */
+  /* ---------------- Undo and redo ---------------- */
 
-  function syncBlocksFromDOM(){
-    var els = pageEl.querySelectorAll('.block');
-    var byId = {};
-    els.forEach(function(el){
-      byId[el.dataset.id] = el.textContent;
-    });
-    current.blocks.forEach(function(b){
-      if(byId.hasOwnProperty(b.id)) b.text = byId[b.id];
-    });
+  function pushHist(){
+    if(!current) return;
+    clearTimeout(histTimer);
+    syncBlocksFromDOM();
+    var s = JSON.stringify(current.blocks.map(function(b){ return [b.id, b.type, b.text, b.syn || '']; }));
+    if(hist.pos >= 0 && hist.stack[hist.pos].s === s) return;
+    var fe = focusedId ? pageEl.querySelector('[data-id="' + focusedId + '"]') : null;
+    hist.stack = hist.stack.slice(0, hist.pos + 1);
+    hist.stack.push({s:s, f:focusedId, o:fe ? caretOffset(fe) : 0});
+    if(hist.stack.length > 150) hist.stack.shift();
+    hist.pos = hist.stack.length - 1;
+  }
+
+  function applyHist(h){
+    current.blocks = JSON.parse(h.s).map(function(a){ var o = {id:a[0], type:a[1], text:a[2]}; if(a[3]) o.syn = a[3]; return o; });
+    renderPage();
+    if(boardOn) renderCards();
+    var el = pageEl.querySelector('[data-id="' + h.f + '"]');
+    if(el){ el.focus(); setCaret(el, h.o); }
+    scheduleSave();
+  }
+
+  function undo(){
+    if(!current) return;
+    pushHist();
+    if(hist.pos > 0){ hist.pos--; applyHist(hist.stack[hist.pos]); }
+  }
+
+  function redo(){
+    if(current && hist.pos < hist.stack.length - 1){ hist.pos++; applyHist(hist.stack[hist.pos]); }
   }
 
   /* ---------------- Persistence ---------------- */
 
   function scheduleSave(){
     saveIndicator.textContent = 'Editing…';
+    dirtySnap = true;
     clearTimeout(saveTimer);
     saveTimer = setTimeout(performSave, 700);
   }
 
-  function performSave(){
-    if(!current) return;
-    syncBlocksFromDOM();
+  function readMeta(){
     current.title = titleInput.value.trim() || 'Untitled Script';
     current.author = authorInput.value.trim();
+    current.contact = contactInput.value.trim();
+    current.draft = draftInput.value.trim();
+    current.paper = paperSel.value;
+    current.sceneNums = numChk.checked;
+  }
+
+  function pruneSnaps(){
+    storage.keys('snap:').forEach(function(k){ storage.remove(k); });
+    snapIdx = [];
+  }
+
+  function performSave(){
+    if(!current) return;
+    clearTimeout(saveTimer);
+    syncBlocksFromDOM();
+    readMeta();
+    pageEl.style.width = current.paper === 'a4' ? '8.27in' : '8.5in';
     current.updatedAt = Date.now();
-    storage.set('script:' + current.id, JSON.stringify(current), false)
-      .then(function(){
-        saveIndicator.textContent = 'Saved';
-        renderList();
-      })
-      .catch(function(){
-        saveIndicator.textContent = 'Could not save';
-      });
+    var ok = putJSON('script:' + current.id, current);
+    if(!ok){ pruneSnaps(); ok = putJSON('script:' + current.id, current); }
+    if(ok){
+      saveIndicator.textContent = 'Saved';
+      index[current.id] = {title:current.title, updatedAt:current.updatedAt};
+    } else {
+      saveIndicator.textContent = 'Not saved';
+      toast('Browser storage is full, so your latest changes are not saved. Open More, choose Back up all scripts, then delete old scripts or empty the trash.');
+    }
+    refreshAll();
+  }
+
+  function newScriptObj(){
+    return {
+      v:2, id:'id' + Date.now().toString(36) + Math.floor(Math.random()*1000),
+      title:'Untitled Script', author:'', contact:'', draft:'', paper:'letter', sceneNums:false,
+      blocks:[{id:genId(), type:'scene_heading', text:''}, {id:genId(), type:'action', text:''}],
+      updatedAt:Date.now()
+    };
   }
 
   function newScript(){
-    var id = 'id' + Date.now().toString(36);
-    var blocks = [
-      {id: genId(), type: 'scene_heading', text: ''},
-      {id: genId(), type: 'action', text: ''}
-    ];
-    current = {id: id, title: 'Untitled Script', author: '', blocks: blocks, updatedAt: Date.now()};
+    if(current) performSave();
+    current = newScriptObj();
+    putJSON('script:' + current.id, current);
+    index[current.id] = {title:current.title, updatedAt:current.updatedAt};
     openCurrent();
-    storage.set('script:' + id, JSON.stringify(current), false).then(renderList);
   }
 
   function openCurrent(){
     emptyStateEl.style.display = 'none';
+    boardOn = false;
+    cardsEl.style.display = 'none';
     pageEl.style.display = 'block';
     topbarEl.style.display = 'flex';
     toolbarWrapEl.style.display = 'block';
     titleInput.value = current.title === 'Untitled Script' ? '' : current.title;
     authorInput.value = current.author || '';
+    contactInput.value = current.contact || '';
+    draftInput.value = current.draft || '';
+    paperSel.value = current.paper || 'letter';
+    numChk.checked = !!current.sceneNums;
+    pageEl.style.width = current.paper === 'a4' ? '8.27in' : '8.5in';
     exportBtn.disabled = false;
     saveIndicator.textContent = '';
     renderPage();
-    var first = current.blocks[0];
-    focusBlock(first.id, true);
-    renderList();
+    layout = paginate();
+    info = analyse();
+    baseWords = info.words;
+    loadSnaps();
+    hist = {stack:[], pos:-1};
+    focusedId = current.blocks[0].id;
+    pushHist();
+    refreshAll();
+    focusBlock(current.blocks[0].id, true);
+    if(window.innerWidth <= 800) document.body.classList.add('sb-closed');
+    updateContinue();
+  }
+
+  function closeCurrent(){
+    current = null;
+    boardOn = false;
+    cardsEl.style.display = 'none';
+    pageEl.style.display = 'none';
+    topbarEl.style.display = 'none';
+    toolbarWrapEl.style.display = 'none';
+    emptyStateEl.style.display = 'block';
+    exportBtn.disabled = true;
+    renderNav();
+    updateContinue();
   }
 
   function loadScript(id){
     if(current) performSave();
-    storage.get('script:' + id).then(function(res){
-      if(!res) return;
-      current = JSON.parse(res.value);
-      openCurrent();
-    }).catch(function(){});
+    var s = migrate(getJSON('script:' + id));
+    if(!s){ toast('That script could not be opened. It may be damaged. Try importing a backup of it.'); return; }
+    current = s;
+    openCurrent();
   }
 
-  function deleteScript(id, ev){
-    ev.stopPropagation();
-    if(!confirm('Delete this script? This cannot be undone.')) return;
-    storage.delete('script:' + id, false).then(function(){
-      if(current && current.id === id){
-        current = null;
-        pageEl.style.display = 'none';
-        topbarEl.style.display = 'none';
-        toolbarWrapEl.style.display = 'none';
-        emptyStateEl.style.display = 'block';
-        exportBtn.disabled = true;
-      }
-      renderList();
-    }).catch(function(){});
+  function trashScript(id){
+    if(current && current.id === id) performSave();
+    var s = getJSON('script:' + id);
+    if(!s) return;
+    if(!putJSON('trash:' + id, {deletedAt:Date.now(), script:s})){
+      toast('Could not move it to the trash because browser storage is full. Back up your scripts from the More menu first.');
+      return;
+    }
+    storage.remove('script:' + id);
+    delete index[id];
+    trashIdx[id] = {title:s.title, deletedAt:Date.now()};
+    if(current && current.id === id) closeCurrent(); else renderNav();
+    updateContinue();
+    toast('Moved “' + (s.title || 'Untitled Script') + '” to the trash.', function(){ restoreTrash(id); });
+  }
+
+  function restoreTrash(id){
+    var t = getJSON('trash:' + id);
+    if(!t || !t.script) return;
+    putJSON('script:' + id, t.script);
+    storage.remove('trash:' + id);
+    delete trashIdx[id];
+    index[id] = {title:t.script.title, updatedAt:t.script.updatedAt || Date.now()};
+    renderNav();
+    updateContinue();
+  }
+
+  function emptyTrash(){
+    Object.keys(trashIdx).forEach(function(id){ storage.remove('trash:' + id); });
+    trashIdx = {};
+    renderNav();
+    toast('Trash emptied.');
   }
 
   function timeAgo(ts){
-    var diff = Date.now() - ts;
-    var mins = Math.round(diff/60000);
+    var mins = Math.round((Date.now() - ts) / 60000);
     if(mins < 1) return 'just now';
     if(mins < 60) return mins + 'm ago';
-    var hrs = Math.round(mins/60);
+    var hrs = Math.round(mins / 60);
     if(hrs < 24) return hrs + 'h ago';
-    var days = Math.round(hrs/24);
-    return days + 'd ago';
+    return Math.round(hrs / 24) + 'd ago';
   }
 
-  function getAllScripts(){
-    return storage.list('script:').then(function(res){
-      var keys = (res && res.keys) || [];
-      var gets = keys.map(function(k){
-        return storage.get(k).then(function(r){
-          try { return JSON.parse(r.value); } catch(e){ return null; }
-        }).catch(function(){ return null; });
-      });
-      return Promise.all(gets).then(function(list){
-        return list.filter(Boolean).sort(function(a,b){ return b.updatedAt - a.updatedAt; });
-      });
-    }).catch(function(){ return []; });
+  function updateContinue(){
+    var ids = Object.keys(index).sort(function(a,b){ return index[b].updatedAt - index[a].updatedAt; });
+    if(!current && ids.length){ continueBtn.style.display = 'inline-block'; continueBtn.dataset.id = ids[0]; }
+    else continueBtn.style.display = 'none';
   }
 
-  function updateContinueButton(scripts){
-    if(current){ continueBtn.style.display = 'none'; return; }
-    if(scripts.length > 0){
-      continueBtn.style.display = 'inline-block';
-      continueBtn.dataset.id = scripts[0].id;
-    } else {
-      continueBtn.style.display = 'none';
+  /* ---------------- Snapshots ---------------- */
+
+  function loadSnaps(){
+    snapIdx = storage.keys('snap:' + current.id + ':').map(function(k){
+      var s = getJSON(k);
+      return s ? {ts:s.ts, name:s.name || ''} : null;
+    }).filter(Boolean).sort(function(a,b){ return b.ts - a.ts; });
+  }
+
+  function takeSnap(name){
+    if(!current) return;
+    syncBlocksFromDOM();
+    var ts = Date.now();
+    if(!putJSON('snap:' + current.id + ':' + ts, {ts:ts, name:name || '', blocks:current.blocks})){
+      toast('Could not save a version because browser storage is full. Back up your scripts, then delete old ones.');
+      return;
     }
+    snapIdx.unshift({ts:ts, name:name || ''});
+    snapIdx.filter(function(s){ return !s.name || s.name === 'Export'; }).slice(15).forEach(function(s){
+      storage.remove('snap:' + current.id + ':' + s.ts);
+      snapIdx.splice(snapIdx.indexOf(s), 1);
+    });
+    dirtySnap = false;
+    if(ui.tab === 'scripts') renderNav();
   }
 
-  function renderList(){
-    getAllScripts().then(function(scripts){
-      updateContinueButton(scripts);
-      if(scripts.length === 0){
-        listEl.innerHTML = '<div id="sidebar-empty">No scripts yet. Your first page is one click away.</div>';
+  function restoreSnap(ts){
+    var s = getJSON('snap:' + current.id + ':' + ts);
+    if(!s) return;
+    takeSnap('Before restore');
+    current.blocks = s.blocks.map(function(b){ return {id:b.id, type:b.type, text:b.text, syn:b.syn}; });
+    renderPage();
+    pushHist();
+    scheduleSave();
+    toast('Restored that version. Your previous draft is saved as “Before restore”.');
+  }
+
+  function compareSnap(ts){
+    var s = getJSON('snap:' + current.id + ':' + ts);
+    if(!s) return;
+    syncBlocksFromDOM();
+    var a = {}, add = 0, rem = 0;
+    s.blocks.forEach(function(b){ a[b.text] = (a[b.text] || 0) + 1; });
+    current.blocks.forEach(function(b){ if(a[b.text] > 0) a[b.text]--; else add++; });
+    for(var k in a) rem += a[k];
+    toast('Compared with that version, the current draft has ' + add + ' new or changed blocks and ' + rem + ' removed or changed.');
+  }
+
+  /* ---------------- Navigator ---------------- */
+
+  function renderTabs(){
+    navTabs.innerHTML = TABS.map(function(t){
+      var on = ui.tab === t[0];
+      return '<button role="tab" class="tab' + (on ? ' on' : '') + '" aria-selected="' + on + '" data-tab="' + t[0] + '">' + t[1] + '</button>';
+    }).join('');
+  }
+
+  function renderNav(){
+    renderTabs();
+    var ae = document.activeElement;
+    if(ae && ae.tagName === 'INPUT' && listEl.contains(ae)) return;
+    if(ui.tab === 'scripts') return renderScripts();
+    if(!current){ listEl.innerHTML = '<div class="hint">Open a script to see its ' + (ui.tab === 'scenes' ? 'scenes' : (ui.tab === 'chars' ? 'characters' : 'locations')) + ' here.</div>'; return; }
+    var h = '';
+    if(ui.tab === 'scenes'){
+      h = info.scenes.length ? '' : '<div class="hint">No scenes yet. Start a line with INT. or EXT. and it appears here. Drag scenes to reorder them.</div>';
+      info.scenes.forEach(function(s){
+        h += '<div class="nav-item" draggable="true" data-act="goto" data-bi="' + s.bi + '" data-k="' + s.k + '"><div class="row"><span class="n">' + s.n + '</span><span class="t">' + esc(s.text) + '</span><span class="sub">p' + s.pg + '</span></div>' + (s.syn ? '<div class="sub">' + esc(s.syn) + '</div>' : '') + '</div>';
+      });
+    } else if(ui.tab === 'chars'){
+      var names = Object.keys(info.chars).sort(function(a,b){ return info.chars[b].words - info.chars[a].words; });
+      h = names.length ? '' : '<div class="hint">No characters yet. Add a Speaker line and the name shows up here with their share of the dialogue.</div>';
+      names.forEach(function(n){
+        var c = info.chars[n], pct = info.dlg ? Math.round(c.words / info.dlg * 100) : 0;
+        h += '<div class="nav-item" data-act="goto" data-bi="' + c.bi + '"><div class="row"><span class="t">' + esc(n) + '</span><button class="mini" data-act="rename" data-name="' + esc(n) + '">Rename</button></div><div class="sub">' + c.lines + ' lines · first on p' + c.pg + ' · ' + pct + '% of dialogue</div><div class="bar"><i style="width:' + pct + '%"></i></div></div>';
+      });
+    } else {
+      var locs = Object.keys(info.locs);
+      h = locs.length ? '' : '<div class="hint">No locations yet. They are read from your scene headings.</div>';
+      locs.forEach(function(n){
+        h += '<div class="nav-item" data-act="goto" data-bi="' + info.locs[n].bi + '"><div class="row"><span class="t">' + esc(n) + '</span><span class="sub">' + info.locs[n].n + ' scenes</span></div></div>';
+      });
+    }
+    listEl.innerHTML = h;
+  }
+
+  function renderScripts(){
+    var ids = Object.keys(index).sort(function(a,b){ return (index[b].updatedAt || 0) - (index[a].updatedAt || 0); });
+    var h = ids.length ? '' : '<div id="sidebar-empty" class="hint">No scripts yet. Your first page is one click away.</div>';
+    ids.forEach(function(id){
+      var s = index[id];
+      h += '<div class="script-item' + (current && current.id === id ? ' active' : '') + '" data-act="open" data-id="' + id + '"><div class="meta"><div class="name">' + esc(s.title || 'Untitled Script') + '</div><div class="time">' + timeAgo(s.updatedAt || Date.now()) + '</div></div><button class="del" data-act="del" data-id="' + id + '" title="Move to trash" aria-label="Move to trash">✕</button></div>';
+    });
+    var tids = Object.keys(trashIdx);
+    if(tids.length){
+      h += '<div class="sec">Trash <button class="mini" data-act="empty">Empty</button></div>';
+      tids.forEach(function(id){
+        h += '<div class="nav-item"><div class="row"><span class="t">' + esc(trashIdx[id].title || 'Untitled Script') + '</span><button class="mini" data-act="restore" data-id="' + id + '">Restore</button></div></div>';
+      });
+    }
+    if(current){
+      h += '<div class="sec">Versions</div><div class="row" style="padding:0 8px;gap:6px;"><input id="snap-name" placeholder="Name this version" aria-label="Version name"><button class="mini" data-act="snap">Save</button></div>';
+      snapIdx.forEach(function(s){
+        h += '<div class="nav-item"><div class="t">' + esc(s.name || 'Auto') + '</div><div class="row"><span class="sub">' + timeAgo(s.ts) + '</span><span><button class="mini" data-act="cmp" data-ts="' + s.ts + '">Compare</button> <button class="mini" data-act="rest" data-ts="' + s.ts + '">Restore</button></span></div></div>';
+      });
+    }
+    listEl.innerHTML = h;
+  }
+
+  function moveScene(a, b){
+    if(a === b || !current) return;
+    syncBlocksFromDOM();
+    var st = [], bl = current.blocks;
+    bl.forEach(function(x, i){ if(x.type === 'scene_heading' && (x.text || '').trim()) st.push(i); });
+    st.push(bl.length);
+    var seg = bl.slice(st[a], st[a+1]);
+    var rest = bl.slice(0, st[a]).concat(bl.slice(st[a+1]));
+    var at = b < a ? st[b] : st[b+1] - seg.length;
+    Array.prototype.splice.apply(rest, [at, 0].concat(seg));
+    current.blocks = rest;
+    renderPage();
+    pushHist();
+    scheduleSave();
+    if(boardOn) renderCards();
+    toast('Scene moved.', undo);
+  }
+
+  function renameChar(oldN, newN){
+    newN = newN.trim().toUpperCase();
+    if(!newN || newN === oldN) { renderNav(); return; }
+    syncBlocksFromDOM();
+    var re = new RegExp('^\\s*' + oldN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'), n = 0;
+    current.blocks.forEach(function(b){
+      if(b.type === 'character' && nameOf(b.text) === oldN){ b.text = b.text.replace(re, newN); n++; }
+    });
+    renderPage();
+    pushHist();
+    scheduleSave();
+    toast('Renamed ' + oldN + ' to ' + newN + ' on ' + n + ' cues.', undo);
+  }
+
+  /* ---------------- Import ---------------- */
+
+  function isUpper(s){
+    var t = s.replace(/\(.*?\)/g, '').trim();
+    return /[A-Z]/.test(t) && t === t.toUpperCase();
+  }
+
+  // Reads Fountain, and ordinary pasted text with scene headings, cues and dialogue
+  function parseText(text){
+    text = text.replace(/\r\n?/g,'\n').replace(/\/\*[\s\S]*?\*\//g,'');
+    var lines = text.split('\n'), meta = {}, out = [], paras = [], cur = [], i = 0;
+    if(/^\s*(title|credit|author|authors|source|draft date|contact|copyright)\s*:/i.test(lines[0])){
+      while(i < lines.length && lines[i].trim()){
+        var m = lines[i].match(/^\s*([A-Za-z ]+):\s*(.*)$/);
+        if(m) meta[m[1].toLowerCase().trim()] = m[2];
+        i++;
+      }
+    }
+    for(; i < lines.length; i++){
+      if(lines[i].trim() === ''){ if(cur.length) paras.push(cur); cur = []; }
+      else cur.push(lines[i]);
+    }
+    if(cur.length) paras.push(cur);
+    paras.forEach(function(p){
+      var f = p[0].trim(), rest = p.slice(1);
+      function add(type, tx){
+        tx = tx.trim();
+        if(tx) out.push({id:genId(), type:type, text:tx});
+      }
+      if(f.charAt(0) === '!'){ add('action', [f.slice(1)].concat(rest).join(' ')); return; }
+      if(/^\.[^.]/.test(f) || SCENE_RE.test(f)){
+        add('scene_heading', f.replace(/^\./,'').replace(/\s*#[^#]+#\s*$/,''));
+        var sy = rest.filter(function(l){ return /^=\s/.test(l); });
+        if(sy.length && out.length) out[out.length-1].syn = sy[0].replace(/^=\s*/, '');
+        rest = rest.filter(function(l){ return !/^=\s/.test(l); });
+        if(rest.length) add('action', rest.join(' '));
         return;
       }
-      listEl.innerHTML = '';
-      scripts.forEach(function(s){
-        var item = document.createElement('div');
-        item.className = 'script-item' + (current && current.id === s.id ? ' active' : '');
-        item.innerHTML =
-          '<div class="meta">' +
-            '<div class="name">' + escapeHtml(s.title || 'Untitled Script') + '</div>' +
-            '<div class="time">' + timeAgo(s.updatedAt || Date.now()) + '</div>' +
-          '</div>' +
-          '<button class="del" title="Delete">✕</button>';
-        item.addEventListener('click', function(){ loadScript(s.id); });
-        item.querySelector('.del').addEventListener('click', function(ev){ deleteScript(s.id, ev); });
-        listEl.appendChild(item);
+      if(f.charAt(0) === '>' && f.slice(-1) !== '<'){ add('transition', f.slice(1)); return; }
+      if(!rest.length && /TO:$/.test(f) && isUpper(f)){ add('transition', f); return; }
+      if(f.charAt(0) === '@' || (rest.length && isUpper(f) && f.length < 40)){
+        add('character', f.replace(/^@/,'').replace(/\s*\^$/,''));
+        var buf = '';
+        rest.forEach(function(l){
+          l = l.trim();
+          if(/^\(.*\)$/.test(l)){ if(buf) add('dialogue', buf); buf = ''; add('parenthetical', l.slice(1,-1)); }
+          else buf += (buf ? ' ' : '') + l;
+        });
+        if(buf) add('dialogue', buf);
+        return;
+      }
+      add('action', p.join(' '));
+    });
+    return {meta:meta, blocks:out};
+  }
+
+  function importText(name, txt){
+    if(/\.json$/i.test(name) || txt.charAt(0) === '{'){
+      var j;
+      try { j = JSON.parse(txt); } catch(e){ toast('That file is not a valid backup. Choose a .json file made with Back up all scripts.'); return; }
+      importBackup(j);
+      return;
+    }
+    var res = parseText(txt);
+    if(!res.blocks.length){ toast('No script text was found in that file. Check that it is plain text or Fountain.'); return; }
+    if(current) performSave();
+    current = newScriptObj();
+    current.title = res.meta.title || name.replace(/\.[^.]+$/, '') || 'Untitled Script';
+    current.author = res.meta.author || res.meta.authors || '';
+    current.contact = res.meta.contact || '';
+    current.draft = res.meta['draft date'] || '';
+    current.blocks = res.blocks;
+    putJSON('script:' + current.id, current);
+    index[current.id] = {title:current.title, updatedAt:current.updatedAt};
+    openCurrent();
+    toast('Imported “' + current.title + '”.');
+  }
+
+  function importBackup(j){
+    var list = j && j.scripts ? j.scripts : (j && j.blocks ? [j] : null);
+    if(!list){ toast('That file does not look like a backup from this app.'); return; }
+    var n = 0, skipped = 0;
+    list.forEach(function(raw){
+      var s = migrate(raw);
+      if(!s) return;
+      if(index[s.id] && index[s.id].updatedAt >= s.updatedAt){ skipped++; return; }
+      if(putJSON('script:' + s.id, s)){ index[s.id] = {title:s.title, updatedAt:s.updatedAt}; n++; }
+    });
+    renderNav();
+    updateContinue();
+    toast('Imported ' + n + (n === 1 ? ' script' : ' scripts') + (skipped ? ', skipped ' + skipped + ' that you already have in a newer version.' : '.'));
+  }
+
+  /* ---------------- Export ---------------- */
+
+  function fname(ext){
+    return ((current.title || 'Script').replace(/[^a-z0-9\-_ ]/gi,'').trim() || 'Script') + ext;
+  }
+
+  function download(name, text, mime){
+    var a = document.createElement('a'), u = URL.createObjectURL(new Blob([text], {type:mime}));
+    a.href = u; a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(u); }, 1000);
+  }
+
+  function beforeExport(){
+    performSave();
+    takeSnap('Export');
+  }
+
+  function toFountain(s){
+    var out = 'Title: ' + (s.title || 'Untitled Script'), prev = '';
+    if(s.author) out += '\nAuthor: ' + s.author;
+    if(s.contact) out += '\nContact: ' + s.contact;
+    if(s.draft) out += '\nDraft date: ' + s.draft;
+    s.blocks.forEach(function(b){
+      var t = (b.text || '').trim();
+      if(!t) return;
+      var u = t.toUpperCase(), line, glue = false, inGrp = /^(character|parenthetical|dialogue)$/.test(prev);
+      switch(b.type){
+        case 'scene_heading': line = (SCENE_RE.test(t) ? u : '.' + u) + (b.syn ? '\n= ' + b.syn : ''); break;
+        case 'character': line = t === u ? t : '@' + t; break;
+        case 'parenthetical': line = '(' + t.replace(/^\(|\)$/g,'') + ')'; glue = inGrp; break;
+        case 'dialogue': line = t; glue = inGrp; break;
+        case 'transition': line = /TO:$/.test(u) ? u : '> ' + u; break;
+        default: line = (t === u && /[A-Z]/.test(t)) || SCENE_RE.test(t) ? '!' + t : t;
+      }
+      out += (glue ? '\n' : '\n\n') + line;
+      prev = b.type;
+    });
+    return out + '\n';
+  }
+
+  function toText(){
+    var out = [], sp = function(n){ return new Array(Math.max(0, n) + 1).join(' '); };
+    var cen = function(s){ return sp(Math.floor((60 - s.length) / 2)) + s; };
+    out.push(cen((current.title || 'Untitled Script').toUpperCase()), '');
+    if(current.author) out.push(cen('Written by'), cen(current.author), '');
+    if(current.contact) out.push(current.contact.split('|').join('\n'));
+    if(current.draft) out.push(current.draft);
+    layout.pages.forEach(function(pg, pi){
+      out.push('\f');
+      if(pi) out.push(sp(58 - String(pi+1).length) + (pi+1) + '.');
+      pg.forEach(function(L){
+        for(var q=0;q<L.b;q++) out.push('');
+        out.push(sp(L.right ? 60 - L.plain.length : Math.round(L.x * 10)) + L.plain);
       });
     });
+    return out.join('\n');
   }
 
-  function escapeHtml(str){
-    var div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
+  function toHtml(){
+    return '<!DOCTYPE html>\n<html lang="en"><head><meta charset="UTF-8"><title>' + esc(current.title) + '</title>' +
+      '<style>body{font:12pt/12pt "Courier New",monospace;max-width:8.5in;margin:1in auto;padding:0 1in;}pre{white-space:pre-wrap;font:inherit;margin:0;}</style></head><body><pre>' +
+      esc(toText()) + '</pre></body></html>';
   }
 
-  /* ---------------- PDF export ---------------- */
+  function drawLine(doc, L, y, LM, TW, nums, p){
+    var runs = [], c = null, k, x;
+    for(k=0;k<L.plain.length;k++){
+      if(!c || c.s !== L.st[k]){ c = {s:L.st[k], t:''}; runs.push(c); }
+      c.t += L.plain.charAt(k);
+    }
+    x = L.right ? LM + TW - L.plain.length * 0.1 : LM + L.x;
+    runs.forEach(function(r){
+      doc.setFont('courier', (r.s & 1) ? ((r.s & 2) ? 'bolditalic' : 'bold') : ((r.s & 2) ? 'italic' : 'normal'));
+      doc.text(r.t, x, y);
+      var w = r.t.length * 0.1;
+      if(r.s & 4) doc.line(x, y + 0.02, x + w, y + 0.02);
+      x += w;
+    });
+    doc.setFont('courier','normal');
+    if(nums && L.sn){
+      doc.text(L.sn + '.', LM - 0.25, y, {align:'right'});
+      doc.text(L.sn + '.', p.w - 0.85, y);
+    }
+  }
 
   function exportPDF(){
     if(!current) return;
-    syncBlocksFromDOM();
-    var title = (titleInput.value.trim() || 'Untitled Script');
-    var author = authorInput.value.trim();
-
+    beforeExport();
     if(typeof window.jspdf === 'undefined'){
-      alert('The PDF engine is still loading — give it a second and try again.');
+      toast('The PDF engine has not loaded yet. Check your connection and try again in a moment.');
       return;
     }
-    var jsPDF = window.jspdf.jsPDF;
-    var doc = new jsPDF({unit:'in', format:'letter'});
-
-    var pageW = 8.5, pageH = 11;
-    var leftMargin = 1.5, rightMargin = 1, topMargin = 1, bottomMargin = 1;
-    var textWidth = pageW - leftMargin - rightMargin;
-    var lineHeight = 1/6;
-
+    var p = paperInfo(), LM = 1.5, TW = p.w - LM - 1;
+    var doc = new window.jspdf.jsPDF({unit:'in', format:current.paper === 'a4' ? 'a4' : 'letter'});
+    var cx = p.w / 2, y0 = p.h * 0.35;
     doc.setFont('courier','normal');
     doc.setFontSize(12);
-
-    doc.text(title.toUpperCase(), pageW/2, 3.8, {align:'center'});
-    if(author){
-      doc.text('by', pageW/2, 3.8 + lineHeight*4, {align:'center'});
-      doc.text(author, pageW/2, 3.8 + lineHeight*6, {align:'center'});
+    doc.text((current.title || 'Untitled Script').toUpperCase(), cx, y0, {align:'center'});
+    if(current.author){
+      doc.text('Written by', cx, y0 + 1, {align:'center'});
+      doc.text(current.author, cx, y0 + 1.35, {align:'center'});
     }
-
-    doc.addPage();
-    var y = topMargin;
-    var pageNum = 1;
-
-    function newPage(){
+    var cl = (current.contact || '').split('|').filter(function(l){ return l.trim(); });
+    cl.forEach(function(l, i){ doc.text(l.trim(), LM, p.h - 1 - (cl.length - 1 - i) / 6); });
+    doc.text(current.draft || new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'}), p.w - 1, p.h - 1, {align:'right'});
+    layout.pages.forEach(function(pg, pi){
       doc.addPage();
-      pageNum++;
-      y = topMargin;
-      doc.setFontSize(12);
-      doc.text(String(pageNum) + '.', pageW - rightMargin, 0.6, {align:'right'});
-    }
-
-    function ensureSpace(lines){
-      if(y + lines*lineHeight > pageH - bottomMargin){
-        newPage();
-      }
-    }
-
-    current.blocks.forEach(function(block){
-      var text = (block.text || '').trim();
-      if(!text) return;
-      var indent = 0, width = textWidth, display = text, extraBefore = 0, extraAfter = lineHeight;
-
-      switch(block.type){
-        case 'scene_heading':
-          display = text.toUpperCase();
-          extraBefore = lineHeight;
-          break;
-        case 'action':
-          extraAfter = lineHeight;
-          break;
-        case 'character':
-          indent = 2.2; width = 3.0; display = text.toUpperCase();
-          extraBefore = lineHeight; extraAfter = 0;
-          break;
-        case 'parenthetical':
-          indent = 1.6; width = 2.0;
-          display = '(' + text.replace(/^\(|\)$/g,'') + ')';
-          extraAfter = 0;
-          break;
-        case 'dialogue':
-          indent = 1.0; width = 3.5;
-          break;
-        case 'transition':
-          indent = 4.0; width = 2.5;
-          display = text.toUpperCase();
-          extraBefore = lineHeight;
-          break;
-      }
-
-      if(extraBefore) { ensureSpace(1); y += extraBefore; }
-
-      var lines = doc.splitTextToSize(display, width);
-      lines.forEach(function(line){
-        ensureSpace(1);
-        doc.text(line, leftMargin + indent, y);
-        y += lineHeight;
+      if(pi > 0) doc.text((pi + 1) + '.', p.w - 1, 0.6, {align:'right'});
+      var y = 1;
+      pg.forEach(function(L){
+        y += L.b / 6;
+        drawLine(doc, L, y, LM, TW, current.sceneNums, p);
+        y += 1 / 6;
       });
-      y += extraAfter;
     });
+    doc.save(fname('.pdf'));
+  }
 
-    doc.save(title.replace(/[^a-z0-9\-_ ]/gi,'').trim() + '.pdf');
+  function backupAll(){
+    if(current) performSave();
+    var all = storage.keys('script:').map(function(k){ return migrate(getJSON(k)); }).filter(Boolean);
+    download('screenwriting-backup-' + dayKey(0) + '.json', JSON.stringify({app:'screenwriting', v:2, exportedAt:Date.now(), scripts:all}), 'application/json');
+    toast('Backed up ' + all.length + (all.length === 1 ? ' script.' : ' scripts.'));
+  }
+
+  function menuAct(a){
+    menuEl.hidden = true;
+    if(a === 'import'){ fileInput.click(); return; }
+    if(a === 'backup'){ backupAll(); return; }
+    if(a === 'help'){ openHelp(); return; }
+    if(!current) return;
+    if(a === 'fountain'){ beforeExport(); download(fname('.fountain'), toFountain(current), 'text/plain'); }
+    else if(a === 'txt'){ beforeExport(); download(fname('.txt'), toText(), 'text/plain'); }
+    else if(a === 'html'){ beforeExport(); download(fname('.html'), toHtml(), 'text/html'); }
+    else if(a === 'copy'){
+      performSave();
+      var done = function(){ toast('Copied the script as Fountain.'); };
+      var fail = function(){ toast('The browser blocked copying. Use Export Fountain instead.'); };
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(toFountain(current)).then(done, fail); else fail();
+    }
+    else if(a === 'find') openFind();
+    else if(a === 'pal') openPal();
+    else if(a === 'cards'){ if(boardOn) hideBoard(); else showBoard(); }
+    else if(a === 'notes'){ current.printNotes = !current.printNotes; performSave(); toast(current.printNotes ? 'Notes will print and export in the PDF.' : 'Notes are hidden from print and the PDF.'); }
+    else if(a === 'snap') takeSnap('');
+    else if(a === 'undo') undo();
+    else if(a === 'redo') redo();
+    else if(a === 'focus'){ ui.focus = !ui.focus; applyView(); }
+    else if(a === 'tw'){ ui.tw = !ui.tw; applyView(); toast(ui.tw ? 'Typewriter scrolling on.' : 'Typewriter scrolling off.'); }
+    else if(a === 'full') toggleFull();
+    else if(a === 'zin'){ ui.zoom = Math.min(1.6, ui.zoom + 0.1); applyView(); }
+    else if(a === 'zout'){ ui.zoom = Math.max(0.5, ui.zoom - 0.1); applyView(); }
+  }
+
+  /* ---------------- Suggestions ---------------- */
+
+  var TIMES = ['DAY','NIGHT','MORNING','AFTERNOON','EVENING','DAWN','DUSK','LATER','CONTINUOUS','MOMENTS LATER','SAME'];
+  var PREFIXES = ['INT. ','EXT. ','INT./EXT. ','I/E. '];
+  var EXTS = ['V.O.)','O.S.)','O.C.)',"CONT'D)",'FILTERED)'];
+  var TRANS = ['CUT TO:','SMASH CUT TO:','MATCH CUT TO:','JUMP CUT TO:','DISSOLVE TO:','FADE OUT.','FADE IN:'];
+
+  function pick(list, q){
+    return list.filter(function(s){ return s.indexOf(q) === 0 && s !== q; }).slice(0, 8);
+  }
+
+  function hideAc(){ ac.el = null; ac.nav = false; acEl.hidden = true; }
+
+  function charNames(){
+    return Object.keys(info.chars).sort(function(a,b){ return info.chars[b].words - info.chars[a].words; });
+  }
+
+  // Learns from the script: places, names and times of day
+  function updateAc(el){
+    if(!el || document.activeElement !== el || composing || !current){ hideAc(); return; }
+    var t = el.textContent, type = el.dataset.type, o = [], start = 0, suffix = '';
+    if(type === 'scene_heading'){
+      var m = t.match(/^(INT\.?\/EXT\.?|EXT\.?\/INT\.?|INT\.?|EXT\.?|EST\.?|I\/E\.?)\s+(.*)$/i);
+      if(!m){
+        if(!/\s/.test(t)) o = pick(PREFIXES, t.toUpperCase());
+      } else {
+        var rest = m[2], di = rest.indexOf(' - ');
+        if(di < 0){ o = pick(Object.keys(info.locs), rest.toUpperCase()); start = t.length - rest.length; suffix = ' - '; }
+        else { var q = rest.slice(di + 3).toUpperCase(); o = pick(TIMES, q); start = t.length - q.length; }
+      }
+    } else if(type === 'character'){
+      if(/\($/.test(t)){ o = EXTS; start = t.length; }
+      else o = pick(charNames(), t.toUpperCase().trim());
+    } else if(type === 'transition'){
+      o = pick(TRANS, t.toUpperCase());
+    }
+    if(!o.length){ hideAc(); return; }
+    ac = {el:el, opts:o, i:0, start:start, suffix:suffix, nav:false};
+    renderAc();
+  }
+
+  function renderAc(){
+    acEl.innerHTML = ac.opts.map(function(s, k){
+      return '<div class="ac-item' + (k === ac.i ? ' on' : '') + '" role="option" data-k="' + k + '">' + esc(s) + '</div>';
+    }).join('');
+    var r = ac.el.getBoundingClientRect();
+    acEl.style.left = Math.max(8, r.left) + 'px';
+    acEl.style.top = (r.bottom + 2) + 'px';
+    acEl.hidden = false;
+  }
+
+  function acceptAc(k){
+    var el = ac.el;
+    if(!el) return;
+    el.textContent = el.textContent.slice(0, ac.start) + ac.opts[k] + ac.suffix;
+    setCaret(el, el.textContent.length);
+    hideAc();
+    scheduleSave();
+    pushHist();
+    updateAc(el);
+  }
+
+  // Arrows choose. Tab or Enter accept once you have typed or chosen something.
+  function acKey(e){
+    if(!ac.el || acEl.hidden) return false;
+    var k = e.key;
+    if(k === 'ArrowDown' || k === 'ArrowUp'){
+      e.preventDefault();
+      ac.nav = true;
+      ac.i = (ac.i + (k === 'ArrowDown' ? 1 : -1) + ac.opts.length) % ac.opts.length;
+      renderAc();
+      return true;
+    }
+    if((k === 'Tab' || (k === 'Enter' && !e.shiftKey)) && !e.shiftKey && (ac.el.textContent || ac.nav)){
+      e.preventDefault();
+      acceptAc(ac.i);
+      return true;
+    }
+    if(k === 'Escape'){ hideAc(); return true; }
+    return false;
+  }
+
+  // Typing INT. or EXT. in an Action line makes it a Location
+  function autoFormat(el){
+    if(el.dataset.type === 'action' && /^(INT|EXT|EST|I\/E)\.\s?$/i.test(el.textContent)) setBlockType(el.dataset.id, 'scene_heading', false);
+  }
+
+  /* ---------------- Find and replace ---------------- */
+
+  function reEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  function openFind(){
+    if(!current) return;
+    findEl.hidden = false;
+    fpos = {bi:Math.max(0, blockIndex(focusedId)), o:0};
+    findIn.focus();
+    findIn.select();
+    countFind();
+  }
+
+  function countFind(){
+    if(!current || !findIn.value){ findCount.textContent = ''; return; }
+    syncBlocksFromDOM();
+    var re = new RegExp(reEsc(findIn.value), 'gi'), n = 0;
+    current.blocks.forEach(function(b){ var m = (b.text || '').match(re); if(m) n += m.length; });
+    findCount.textContent = n ? n + ' found' : 'No matches';
+  }
+
+  function findNext(){
+    if(!current || !findIn.value) return;
+    syncBlocksFromDOM();
+    var q = findIn.value.toLowerCase(), bl = current.blocks, n = bl.length;
+    for(var k=0;k<=n;k++){
+      var bi = (fpos.bi + k) % n;
+      var idx = (bl[bi].text || '').toLowerCase().indexOf(q, k === 0 ? fpos.o : 0);
+      if(idx >= 0){
+        if(boardOn) hideBoard();
+        var el = pageEl.children[bi];
+        el.focus();
+        try {
+          var r = document.createRange(), sel = window.getSelection();
+          r.setStart(el.firstChild, idx);
+          r.setEnd(el.firstChild, idx + q.length);
+          sel.removeAllRanges();
+          sel.addRange(r);
+        } catch(e){}
+        el.scrollIntoView({block:'center'});
+        fpos = {bi:bi, o:idx + q.length};
+        countFind();
+        return;
+      }
+    }
+    countFind();
+  }
+
+  function replaceOne(){
+    if(!current || !findIn.value) return;
+    var s = window.getSelection();
+    if(!s.rangeCount || s.toString().toLowerCase() !== findIn.value.toLowerCase()){ findNext(); return; }
+    var r = s.getRangeAt(0), nd = r.startContainer;
+    var el = (nd.nodeType === 3 ? nd.parentNode : nd).closest('.block');
+    if(!el){ findNext(); return; }
+    var pre = r.cloneRange();
+    pre.selectNodeContents(el);
+    pre.setEnd(r.startContainer, r.startOffset);
+    var a = pre.toString().length, t = el.textContent;
+    el.textContent = t.slice(0, a) + repIn.value + t.slice(a + findIn.value.length);
+    fpos = {bi:blockIndex(el.dataset.id), o:a + repIn.value.length};
+    scheduleSave();
+    pushHist();
+    findNext();
+  }
+
+  function replaceAll(){
+    if(!current || !findIn.value) return;
+    syncBlocksFromDOM();
+    var re = new RegExp(reEsc(findIn.value), 'gi'), n = 0;
+    current.blocks.forEach(function(b){
+      b.text = (b.text || '').replace(re, function(){ n++; return repIn.value; });
+    });
+    if(!n){ countFind(); return; }
+    renderPage();
+    pushHist();
+    scheduleSave();
+    countFind();
+    toast('Replaced ' + n + (n === 1 ? ' match.' : ' matches.'), undo);
+  }
+
+  /* ---------------- Command palette and help ---------------- */
+
+  function setTab(t){
+    ui.tab = t;
+    saveUI();
+    document.body.classList.remove('sb-closed');
+    renderNav();
+  }
+
+  function insertNote(){
+    var el = pageEl.querySelector('[data-id="' + focusedId + '"]');
+    if(!el) return;
+    el.focus();
+    wrapSel(el, '[[', ']]');
+    scheduleSave();
+    pushHist();
+  }
+
+  var CMDS = [
+    ['New script', newScript],
+    ['Export PDF', exportPDF],
+    ['Export Fountain', function(){ menuAct('fountain'); }],
+    ['Export plain text', function(){ menuAct('txt'); }],
+    ['Export HTML', function(){ menuAct('html'); }],
+    ['Copy script as Fountain', function(){ menuAct('copy'); }],
+    ['Back up all scripts', backupAll],
+    ['Import a file', function(){ fileInput.click(); }],
+    ['Find and replace', openFind],
+    ['Index cards or script view', function(){ menuAct('cards'); }],
+    ['Focus mode on or off', function(){ menuAct('focus'); }],
+    ['Typewriter scrolling on or off', function(){ menuAct('tw'); }],
+    ['Distraction free full screen', toggleFull],
+    ['Zoom in', function(){ menuAct('zin'); }],
+    ['Zoom out', function(){ menuAct('zout'); }],
+    ['Save a version', function(){ menuAct('snap'); }],
+    ['Undo', undo],
+    ['Redo', redo],
+    ['Insert a note', insertNote],
+    ['Print notes on or off', function(){ menuAct('notes'); }],
+    ['Change theme', cycleTheme],
+    ['Show Scripts', function(){ setTab('scripts'); }],
+    ['Show Scenes', function(){ setTab('scenes'); }],
+    ['Show Characters', function(){ setTab('chars'); }],
+    ['Show Locations', function(){ setTab('locs'); }],
+    ['Keyboard shortcuts', openHelp]
+  ].concat(TYPES.map(function(t){
+    return ['Make this line ' + t.label + ' (' + t.tip + ')', function(){ if(focusedId) setBlockType(focusedId, t.key, true); }];
+  }));
+
+  function openPal(){
+    palEl.hidden = false;
+    palIn.value = '';
+    palSel = 0;
+    renderPal();
+    palIn.focus();
+  }
+
+  function renderPal(){
+    var q = palIn.value.toLowerCase();
+    palList = CMDS.filter(function(c){ return c[0].toLowerCase().indexOf(q) >= 0; });
+    palSel = Math.min(palSel, Math.max(0, palList.length - 1));
+    palListEl.innerHTML = palList.length ? palList.map(function(c, i){
+      return '<div class="pal-item' + (i === palSel ? ' on' : '') + '" role="option" data-i="' + i + '">' + esc(c[0]) + '</div>';
+    }).join('') : '<div class="hint">No command matches. Try a shorter word.</div>';
+  }
+
+  function runCmd(i){
+    var c = palList[i];
+    palEl.hidden = true;
+    if(c) setTimeout(c[1], 0);
+  }
+
+  function openHelp(){ helpEl.hidden = false; }
+
+  /* ---------------- Index cards ---------------- */
+
+  function showBoard(){
+    if(!current) return;
+    syncBlocksFromDOM();
+    boardOn = true;
+    pageEl.style.display = 'none';
+    cardsEl.style.display = 'flex';
+    renderCards();
+  }
+
+  function hideBoard(){
+    boardOn = false;
+    cardsEl.style.display = 'none';
+    pageEl.style.display = 'block';
+    var el = focusedId ? pageEl.querySelector('[data-id="' + focusedId + '"]') : null;
+    if(el){ el.focus(); el.scrollIntoView({block:'center'}); }
+  }
+
+  function renderCards(){
+    var h = '', n = 0;
+    current.blocks.forEach(function(b, i){
+      if(b.type !== 'scene_heading' || !(b.text || '').trim()) return;
+      n++;
+      var nx = current.blocks[i+1] && current.blocks[i+1].type === 'action' ? current.blocks[i+1].text.slice(0, 90) : '';
+      h += '<div class="card" draggable="true" data-k="' + (n - 1) + '" data-bi="' + i + '"><div class="row"><b>' + n + '</b><button class="mini" data-act="open">Open</button></div><div class="ct">' + esc(b.text.toUpperCase()) + '</div><textarea data-bi="' + i + '" aria-label="Synopsis for scene ' + n + '" placeholder="' + esc(nx || 'One line synopsis') + '">' + esc(b.syn || '') + '</textarea></div>';
+    });
+    cardsEl.innerHTML = h || '<div class="hint">No scenes yet. Add a Location line and it becomes a card you can drag around.</div>';
   }
 
   /* ---------------- Wiring ---------------- */
 
-  newBtn.addEventListener('click', newScript);
-  emptyNewBtn.addEventListener('click', newScript);
-  continueBtn.addEventListener('click', function(){
-    var id = continueBtn.dataset.id;
-    if(id) loadScript(id);
-  });
-  exportBtn.addEventListener('click', exportPDF);
-  titleInput.addEventListener('input', scheduleSave);
-  authorInput.addEventListener('input', scheduleSave);
+  buildToolbar();
+  loadIndex();
+  var savedUI = getJSON('ui:settings');
+  if(savedUI) for(var uk in savedUI) ui[uk] = savedUI[uk];
+  var savedTheme = storage.get('ui:theme');
+  if(savedTheme) ui.theme = savedTheme;
+  streak = getJSON('ui:streak') || streak;
+  if(window.innerWidth <= 800) document.body.classList.add('sb-closed');
+  applyTheme();
+  applyView();
+  showStreak();
   exportBtn.disabled = true;
 
-  renderList();
+  themeToggle.addEventListener('click', cycleTheme);
+  if(window.matchMedia) matchMedia('(prefers-color-scheme: light)').addEventListener('change', applyTheme);
+  newBtn.addEventListener('click', newScript);
+  emptyNewBtn.addEventListener('click', newScript);
+  continueBtn.addEventListener('click', function(){ if(continueBtn.dataset.id) loadScript(continueBtn.dataset.id); });
+  exportBtn.addEventListener('click', exportPDF);
+  sidebarToggle.addEventListener('click', function(){ document.body.classList.toggle('sb-closed'); });
+  menuBtn.addEventListener('click', function(e){ e.stopPropagation(); menuEl.hidden = !menuEl.hidden; });
+  menuEl.addEventListener('click', function(e){ var b = e.target.closest('button'); if(b) menuAct(b.dataset.act); });
+  document.addEventListener('click', function(e){ if(!menuEl.hidden && !menuEl.contains(e.target)) menuEl.hidden = true; });
+  toastUndo.addEventListener('click', function(){ var f = toastFn; toastEl.classList.remove('show'); if(f) f(); });
+  fileInput.addEventListener('change', function(){
+    var f = fileInput.files[0];
+    if(!f) return;
+    var r = new FileReader();
+    r.onload = function(){ importText(f.name, String(r.result)); };
+    r.onerror = function(){ toast('That file could not be read. Try saving it again and re-importing.'); };
+    r.readAsText(f);
+    fileInput.value = '';
+  });
+
+  [titleInput, authorInput, contactInput, draftInput].forEach(function(el){ el.addEventListener('input', scheduleSave); });
+  paperSel.addEventListener('change', scheduleSave);
+  numChk.addEventListener('change', scheduleSave);
+  goalInput.addEventListener('change', function(){ ui.goal = Math.max(50, parseInt(goalInput.value, 10) || 500); applyView(); if(current) updateStats(); });
+
+  pageEl.addEventListener('focusin', function(e){
+    var el = e.target.closest ? e.target.closest('.block') : null;
+    if(!el) return;
+    focusedId = el.dataset.id;
+    highlightToolbar(el.dataset.type);
+    typewriter(el);
+    updateAc(el);
+  });
+  pageEl.addEventListener('focusout', hideAc);
+  pageEl.addEventListener('input', function(e){
+    if(composing) return;
+    scheduleSave();
+    clearTimeout(histTimer);
+    histTimer = setTimeout(pushHist, 500);
+    typewriter(e.target);
+    var be = e.target.closest ? e.target.closest('.block') : null;
+    if(be){ autoFormat(be); updateAc(be); }
+  });
+  pageEl.addEventListener('compositionstart', function(){ composing = true; });
+  pageEl.addEventListener('compositionend', function(){ composing = false; scheduleSave(); histTimer = setTimeout(pushHist, 500); });
+  pageEl.addEventListener('keydown', onKeydown);
+  pageEl.addEventListener('paste', onPaste);
+
+  navTabs.addEventListener('click', function(e){
+    var t = e.target.closest('[data-tab]');
+    if(!t) return;
+    ui.tab = t.dataset.tab;
+    saveUI();
+    renderNav();
+  });
+  listEl.addEventListener('click', function(e){
+    var t = e.target.closest('[data-act]');
+    if(!t) return;
+    var a = t.dataset.act;
+    if(a === 'open') loadScript(t.dataset.id);
+    else if(a === 'del'){ e.stopPropagation(); trashScript(t.dataset.id); }
+    else if(a === 'restore') restoreTrash(t.dataset.id);
+    else if(a === 'empty') emptyTrash();
+    else if(a === 'goto'){ var bi = parseInt(t.dataset.bi, 10); if(current.blocks[bi]){ focusBlock(current.blocks[bi].id, true); if(pageEl.children[bi]) pageEl.children[bi].scrollIntoView({block:'center'}); } }
+    else if(a === 'rename'){
+      e.stopPropagation();
+      var row = t.closest('.row');
+      row.innerHTML = '<input class="rn" aria-label="New name" value="' + t.dataset.name + '" data-old="' + t.dataset.name + '">';
+      row.firstChild.focus();
+      row.firstChild.select();
+    }
+    else if(a === 'snap'){ var nm = document.getElementById('snap-name'); takeSnap(nm ? nm.value.trim() : ''); }
+    else if(a === 'cmp') compareSnap(t.dataset.ts);
+    else if(a === 'rest') restoreSnap(t.dataset.ts);
+  });
+  listEl.addEventListener('keydown', function(e){
+    var t = e.target;
+    if(!t.classList || !t.classList.contains('rn')) return;
+    if(e.key === 'Enter'){ e.preventDefault(); renameChar(t.dataset.old, t.value); }
+    else if(e.key === 'Escape'){ t.blur(); renderNav(); }
+  });
+  listEl.addEventListener('dragstart', function(e){
+    var t = e.target.closest ? e.target.closest('[data-k]') : null;
+    if(!t) return;
+    dragK = parseInt(t.dataset.k, 10);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', String(dragK));
+  });
+  listEl.addEventListener('dragover', function(e){
+    var t = e.target.closest ? e.target.closest('[data-k]') : null;
+    if(!t || dragK < 0) return;
+    e.preventDefault();
+    var old = listEl.querySelector('.drop');
+    if(old && old !== t) old.classList.remove('drop');
+    t.classList.add('drop');
+  });
+  listEl.addEventListener('drop', function(e){
+    var t = e.target.closest ? e.target.closest('[data-k]') : null;
+    if(!t || dragK < 0) return;
+    e.preventDefault();
+    var from = dragK;
+    dragK = -1;
+    moveScene(from, parseInt(t.dataset.k, 10));
+  });
+  listEl.addEventListener('dragend', function(){ dragK = -1; renderNav(); });
+
+  resizerEl.addEventListener('pointerdown', function(e){
+    resizerEl.setPointerCapture(e.pointerId);
+    function move(ev){ ui.sb = Math.max(180, Math.min(480, ev.clientX)); document.body.style.setProperty('--sbw', ui.sb + 'px'); }
+    function up(){ resizerEl.removeEventListener('pointermove', move); resizerEl.removeEventListener('pointerup', up); saveUI(); }
+    resizerEl.addEventListener('pointermove', move);
+    resizerEl.addEventListener('pointerup', up);
+  });
+
+  document.addEventListener('keydown', function(e){
+    var mod = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
+    if(mod && k === 's' && current){ e.preventDefault(); performSave(); }
+    else if(mod && k === 'k'){ e.preventDefault(); openPal(); }
+    else if(mod && k === 'f' && current){ e.preventDefault(); openFind(); }
+    else if((k === 'f3' || (mod && k === 'g')) && current){ e.preventDefault(); findNext(); }
+    else if((mod && k === '/') || k === 'f1'){ e.preventDefault(); openHelp(); }
+    else if(e.key === '?' && !(e.target.isContentEditable || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName))){ openHelp(); }
+    if(e.key === 'Escape'){ menuEl.hidden = true; palEl.hidden = true; helpEl.hidden = true; hideAc(); if(boardOn) hideBoard(); }
+  });
+  document.addEventListener('fullscreenchange', function(){ if(!document.fullscreenElement) document.body.classList.remove('zen'); });
+  window.addEventListener('pagehide', performSave);
+  document.addEventListener('visibilitychange', function(){ if(document.hidden) performSave(); });
+  setInterval(function(){ if(current && dirtySnap) takeSnap(''); }, 300000);
+
+  acEl.addEventListener('mousedown', function(e){
+    e.preventDefault();
+    var t = e.target.closest('.ac-item');
+    if(t) acceptAc(parseInt(t.dataset.k, 10));
+  });
+  findEl.addEventListener('click', function(e){
+    var f = e.target.dataset ? e.target.dataset.f : '';
+    if(f === 'next') findNext(); else if(f === 'rep') replaceOne(); else if(f === 'all') replaceAll(); else if(f === 'close') findEl.hidden = true;
+  });
+  findIn.addEventListener('input', function(){ fpos = {bi:Math.max(0, blockIndex(focusedId)), o:0}; countFind(); });
+  findIn.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); findNext(); }
+    else if(e.key === 'Escape') findEl.hidden = true;
+  });
+  palIn.addEventListener('input', function(){ palSel = 0; renderPal(); });
+  palIn.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      palSel = (palSel + (e.key === 'ArrowDown' ? 1 : -1) + palList.length) % (palList.length || 1);
+      renderPal();
+    } else if(e.key === 'Enter'){ e.preventDefault(); runCmd(palSel); }
+  });
+  palListEl.addEventListener('mousedown', function(e){
+    var t = e.target.closest('.pal-item');
+    if(t){ e.preventDefault(); runCmd(parseInt(t.dataset.i, 10)); }
+  });
+  palEl.addEventListener('click', function(e){ if(e.target === palEl) palEl.hidden = true; });
+  helpEl.addEventListener('click', function(e){ if(e.target === helpEl) helpEl.hidden = true; });
+  cardsEl.addEventListener('click', function(e){
+    var t = e.target.closest('[data-act="open"]');
+    if(!t) return;
+    var bi = parseInt(t.closest('.card').dataset.bi, 10);
+    hideBoard();
+    var b = current.blocks[bi];
+    if(b){ focusBlock(b.id, true); if(pageEl.children[bi]) pageEl.children[bi].scrollIntoView({block:'center'}); }
+  });
+  cardsEl.addEventListener('input', function(e){
+    if(e.target.tagName !== 'TEXTAREA') return;
+    var b = current.blocks[parseInt(e.target.dataset.bi, 10)];
+    if(b){ b.syn = e.target.value; scheduleSave(); }
+  });
+  cardsEl.addEventListener('dragstart', function(e){
+    var t = e.target.closest ? e.target.closest('.card') : null;
+    if(!t) return;
+    dragK = parseInt(t.dataset.k, 10);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', String(dragK));
+  });
+  cardsEl.addEventListener('dragover', function(e){
+    var t = e.target.closest ? e.target.closest('.card') : null;
+    if(!t || dragK < 0) return;
+    e.preventDefault();
+    var old = cardsEl.querySelector('.drop');
+    if(old && old !== t) old.classList.remove('drop');
+    t.classList.add('drop');
+  });
+  cardsEl.addEventListener('drop', function(e){
+    var t = e.target.closest ? e.target.closest('.card') : null;
+    if(!t || dragK < 0) return;
+    e.preventDefault();
+    var from = dragK;
+    dragK = -1;
+    moveScene(from, parseInt(t.dataset.k, 10));
+  });
+  cardsEl.addEventListener('dragend', function(){ dragK = -1; if(boardOn) renderCards(); });
+
+  renderNav();
+  updateContinue();
 
 })();
 </script>
