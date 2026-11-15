@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Screen Writing</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312203a'/%3E%3Cpath d='M18 10h20l10 10v34H18z' fill='%23f6f3ea'/%3E%3Cpath d='M38 10v10h10z' fill='%23b9b4a3'/%3E%3Cpath d='M24 28h22M24 34h22M24 40h14M24 46h18' stroke='%2312203a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root{
@@ -345,6 +346,9 @@
   #topbar{flex-wrap:wrap;padding:10px 20px;gap:10px 14px;}
   #topbar #contact-input,#topbar #draft-input{color:var(--muted);}
   #contact-input{width:150px;}
+  #topbar #title-input{width:auto;flex:1 1 140px;min-width:110px;}
+  #topbar #author-input{width:auto;flex:1 1 110px;min-width:90px;}
+  #export-btn,#menu-wrap{flex:none;}
   #draft-input{width:110px;}
   #topbar select,#topbar #goal-input{background:var(--bg);border:1px solid var(--panel-border);color:var(--shell-text);border-radius:4px;padding:3px 6px;font-size:12px;font-family:inherit;}
   #topbar #goal-input{width:64px;}
@@ -355,7 +359,7 @@
   #ring .trk{fill:none;stroke:var(--panel-border);stroke-width:3;}
   #ring-bar{fill:none;stroke:var(--accent);stroke-width:3;stroke-dasharray:56.5;stroke-dashoffset:56.5;transform:rotate(-90deg);transform-origin:12px 12px;transition:stroke-dashoffset .2s;}
   #menu-wrap{position:relative;}
-  #menu{position:absolute;right:0;top:110%;background:var(--panel);border:1px solid var(--panel-border);border-radius:4px;padding:4px;min-width:230px;z-index:30;display:flex;flex-direction:column;}
+  #menu{position:fixed;max-height:calc(100vh - 80px);overflow-y:auto;background:var(--panel);border:1px solid var(--panel-border);border-radius:4px;padding:4px;min-width:230px;z-index:30;display:flex;flex-direction:column;}
   #menu[hidden]{display:none;}
   #menu button{background:transparent;border:none;color:var(--shell-text);text-align:left;padding:7px 10px;border-radius:4px;font-size:12.5px;cursor:pointer;font-family:inherit;}
   #menu button:hover{background:var(--panel-border);}
@@ -2031,7 +2035,15 @@
   continueBtn.addEventListener('click', function(){ if(continueBtn.dataset.id) loadScript(continueBtn.dataset.id); });
   exportBtn.addEventListener('click', exportPDF);
   sidebarToggle.addEventListener('click', function(){ document.body.classList.toggle('sb-closed'); });
-  menuBtn.addEventListener('click', function(e){ e.stopPropagation(); menuEl.hidden = !menuEl.hidden; });
+  menuBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    menuEl.hidden = !menuEl.hidden;
+    if(!menuEl.hidden){
+      var r = menuBtn.getBoundingClientRect();
+      menuEl.style.top = (r.bottom + 4) + 'px';
+      menuEl.style.right = Math.max(8, window.innerWidth - r.right) + 'px';
+    }
+  });
   menuEl.addEventListener('click', function(e){ var b = e.target.closest('button'); if(b) menuAct(b.dataset.act); });
   document.addEventListener('click', function(e){ if(!menuEl.hidden && !menuEl.contains(e.target)) menuEl.hidden = true; });
   toastUndo.addEventListener('click', function(){ var f = toastFn; toastEl.classList.remove('show'); if(f) f(); });
